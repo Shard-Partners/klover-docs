@@ -504,6 +504,7 @@ body { font-family: var(--kl-font); line-height: 1.55; -webkit-font-smoothing: a
   .kl-article h1 { font-size: 34px; }
 }
 </style>
+<script>(function(){var r=sessionStorage.getItem('klover-redirect');if(r){sessionStorage.removeItem('klover-redirect');history.replaceState(null,null,r);}}());</script>
 </head>
 <body>
 <!-- ===================== HEADER ===================== -->
@@ -581,6 +582,25 @@ const NAV_GROUPS = [
 ];
 const ICONS = { home:'', sec1:'01', sec2:'02', sec3:'03', sec4:'04', sec5:'05', sec6:'06', sec_security:'07', sec7:'08', sec8:'09', sec9:'10', sec_team:'11', sec10:'12', sec_faq:'13' };
 const ORDER = ['home','sec1','sec2','sec3','sec4','sec5','sec6','sec_security','sec7','sec8','sec9','sec_team','sec10','sec_faq'];
+const BASE = '/klover-docs';
+const PATH_MAP = {
+  home: '/',
+  sec1: '/introduction',
+  sec2: '/k-culture-opportunity',
+  sec3: '/ecosystem',
+  sec4: '/klvr',
+  sec5: '/culture-tokens',
+  sec6: '/platform',
+  sec_security: '/security',
+  sec7: '/governance',
+  sec8: '/launch-culture-token',
+  sec9: '/roadmap',
+  sec_team: '/team',
+  sec10: '/legal',
+  sec_faq: '/faq',
+};
+const PATH_TO_ID = Object.fromEntries(Object.entries(PATH_MAP).map(([k,v]) => [v,k]));
+function sectionToPath(id) { return BASE + (PATH_MAP[id] || '/'); }
 
 /* ============================================================
    TRANSLATIONS  (en = source of truth; others fall back to en)
@@ -935,7 +955,7 @@ I18N.en = {
     menuToggle: document.getElementById('menuToggle'),
     scrim: document.getElementById('scrim'),
   };
-  let current = parseHash();
+  let current = parseRoute();
 
   /* ---------- THEME ---------- */
   function applyTheme(theme) {
@@ -1032,7 +1052,7 @@ I18N.en = {
       group.items.forEach(id => {
         const link = document.createElement('a');
         link.className = 'kl-nav-link' + (id === current.section ? ' active' : '');
-        link.href = '#' + id;
+        link.href = sectionToPath(id);
         link.setAttribute('data-nav', id);
         link.innerHTML = '<span class="ico" aria-hidden="true">' + (ICONS[id] || '•') + '</span><span>' + navLabel(id) + '</span>';
         g.appendChild(link);
@@ -1042,12 +1062,19 @@ I18N.en = {
   }
 
   /* ---------- ROUTER ---------- */
-  function parseHash() {
-    let h = (location.hash || '').replace(/^#/, '').trim();
-    if (ORDER.includes(h)) return { section: h };
-    return { section: 'home' };
+  function parseRoute() {
+    let path = window.location.pathname.slice(BASE.length) || '/';
+    if (!path.startsWith('/')) path = '/' + path;
+    if (path !== '/' && path.endsWith('/')) path = path.slice(0, -1);
+    return { section: PATH_TO_ID[path] || 'home' };
   }
-  window.addEventListener('hashchange', () => { current = parseHash(); renderPage(current, true); renderNav(); });
+  function navigate(id) {
+    history.pushState({ section: id }, '', sectionToPath(id));
+    current = { section: id };
+    renderPage(current, false);
+    renderNav();
+  }
+  window.addEventListener('popstate', () => { current = parseRoute(); renderPage(current, true); renderNav(); });
 
   /* ---------- RENDER ---------- */
   function renderPage(route, doScroll) {
@@ -1067,21 +1094,26 @@ I18N.en = {
         '<h1>' + h.title1 + ' <span class="grad">' + h.title2 + '</span></h1>' +
         '<p class="lead">' + h.lead + '</p>' +
         '<div class="kl-hero-cta">' +
-          '<a class="kl-btn kl-btn-primary" data-nav="sec1" href="#sec1">' + h.cta1 + ' →</a>' +
-          '<a class="kl-btn kl-btn-ghost" data-nav="sec5" href="#sec5">' + h.cta2 + '</a>' +
+          '<a class="kl-btn kl-btn-primary" data-nav="sec1" href="' + sectionToPath('sec1') + '">' + h.cta1 + ' →</a>' +
+          '<a class="kl-btn kl-btn-ghost" data-nav="sec5" href="' + sectionToPath('sec5') + '">' + h.cta2 + '</a>' +
         '</div>' +
         '<div class="kl-byline">' + h.byline + '</div>' +
       '</div>' +
       '<hr class="kl-home-divider" />' +
       '<div class="kl-cards">' + cards + '</div>';
   }
+  function fixContentLinks(html) {
+    return html.replace(/href="#([\w]+)"/g, function(m, id) {
+      return PATH_MAP[id] ? 'href="' + sectionToPath(id) + '"' : m;
+    });
+  }
   function renderSection(id) {
-    el.content.innerHTML = '<h1>' + navLabel(id) + '</h1>' + pageHtml(id);
+    el.content.innerHTML = '<h1>' + navLabel(id) + '</h1>' + fixContentLinks(pageHtml(id));
   }
   function renderBreadcrumb(id) {
     const root = 'KLOVER ' + t('ui.docs');
     if (id === 'home') el.breadcrumb.innerHTML = '<span>' + root + '</span>';
-    else el.breadcrumb.innerHTML = '<a data-nav="home" href="#home">' + root + '</a><span class="sep">›</span><span>' + navLabel(id) + '</span>';
+    else el.breadcrumb.innerHTML = '<a data-nav="home" href="' + sectionToPath('home') + '">' + root + '</a><span class="sep">›</span><span>' + navLabel(id) + '</span>';
   }
   function renderFooter(id) {
     if (id === 'home') { el.pageFooter.innerHTML = ''; return; }
@@ -1099,10 +1131,10 @@ I18N.en = {
     const next = idx < ORDER.length - 1 ? ORDER[idx + 1] : null;
     let html = '';
     html += prev
-      ? '<a class="kl-pager-btn prev" data-nav="' + prev + '" href="#' + prev + '"><span class="kl-pager-dir">← ' + t('ui.previous') + '</span><span class="kl-pager-title">' + navLabel(prev) + '</span></a>'
+      ? '<a class="kl-pager-btn prev" data-nav="' + prev + '" href="' + sectionToPath(prev) + '"><span class="kl-pager-dir">← ' + t('ui.previous') + '</span><span class="kl-pager-title">' + navLabel(prev) + '</span></a>'
       : '<span class="kl-pager-btn empty"></span>';
     html += next
-      ? '<a class="kl-pager-btn next" data-nav="' + next + '" href="#' + next + '"><span class="kl-pager-dir">' + t('ui.next') + ' →</span><span class="kl-pager-title">' + navLabel(next) + '</span></a>'
+      ? '<a class="kl-pager-btn next" data-nav="' + next + '" href="' + sectionToPath(next) + '"><span class="kl-pager-dir">' + t('ui.next') + ' →</span><span class="kl-pager-title">' + navLabel(next) + '</span></a>'
       : '<span class="kl-pager-btn empty"></span>';
     el.pager.innerHTML = html;
   }
@@ -1172,9 +1204,9 @@ I18N.en = {
   }
   function renderSearchResults(hits, q) {
     if (!hits.length) { el.searchResults.innerHTML = '<div class="kl-search-empty">' + t('ui.searchNoResults') + '</div>'; el.searchResults.classList.add('open'); return; }
-    el.searchResults.innerHTML = hits.map(h => '<a class="kl-result" href="#' + h.item.section + '" data-route="' + h.item.section + '"><div class="r-crumb">' + esc(h.item.crumb) + '</div><div class="r-title">' + esc(h.item.title) + '</div>' + (h.item.text ? '<div class="r-snippet">' + highlight(h.item.text, q) + '</div>' : '') + '</a>').join('');
+    el.searchResults.innerHTML = hits.map(h => '<a class="kl-result" href="' + sectionToPath(h.item.section) + '" data-route="' + h.item.section + '"><div class="r-crumb">' + esc(h.item.crumb) + '</div><div class="r-title">' + esc(h.item.title) + '</div>' + (h.item.text ? '<div class="r-snippet">' + highlight(h.item.text, q) + '</div>' : '') + '</a>').join('');
     el.searchResults.classList.add('open');
-    el.searchResults.querySelectorAll('.kl-result').forEach(r => r.addEventListener('click', (e) => { e.preventDefault(); location.hash = '#' + r.getAttribute('data-route'); el.searchResults.classList.remove('open'); el.search.value = ''; }));
+    el.searchResults.querySelectorAll('.kl-result').forEach(r => r.addEventListener('click', (e) => { e.preventDefault(); navigate(r.getAttribute('data-route')); el.searchResults.classList.remove('open'); el.search.value = ''; }));
   }
   el.search.addEventListener('input', () => { searchIndex = buildIndex(); runSearch(el.search.value); });
   el.search.addEventListener('focus', () => { searchIndex = buildIndex(); if (el.search.value) runSearch(el.search.value); });
@@ -1212,7 +1244,13 @@ I18N.en = {
   function closeMobileNavMaybe() { if (window.innerWidth <= 860) closeMobileNav(); }
   el.menuToggle.addEventListener('click', () => document.body.classList.contains('nav-open') ? closeMobileNav() : openMobileNav());
   el.scrim.addEventListener('click', closeMobileNav);
-  document.addEventListener('click', (e) => { if (e.target.closest('[data-nav]')) closeMobileNavMaybe(); });
+  document.addEventListener('click', (e) => {
+    const navEl = e.target.closest('[data-nav]');
+    if (!navEl) return;
+    e.preventDefault();
+    navigate(navEl.getAttribute('data-nav'));
+    closeMobileNavMaybe();
+  });
 
   /* ---------- INIT ---------- */
   function init() {
