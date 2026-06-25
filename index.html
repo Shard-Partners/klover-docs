@@ -600,7 +600,8 @@ const PATH_MAP = {
   sec_faq: '/faq',
 };
 const PATH_TO_ID = Object.fromEntries(Object.entries(PATH_MAP).map(([k,v]) => [v,k]));
-function sectionToPath(id) { return BASE + (PATH_MAP[id] || '/'); }
+let KL_LANG = 'en';
+function sectionToPath(id) { return BASE + (KL_LANG === 'ko' ? '/kor' : '') + (PATH_MAP[id] || '/'); }
 
 /* ============================================================
    TRANSLATIONS  (en = source of truth; others fall back to en)
@@ -916,6 +917,314 @@ I18N.en = {
 };
 
 /* === Additional language packs are injected below (zh, ko, ja, fr, es). === */
+I18N.ko = {
+  ui: {
+    docs: '문서',
+    searchPlaceholder: '검색…',
+    searchNoResults: '검색 결과 없음',
+    onThisPage: '목차',
+    previous: '이전',
+    next: '다음',
+    groupIntro: '들어가며',
+    groupEcosystem: '생태계',
+    groupParticipate: '참여',
+    groupResources: '자료',
+    helpfulQuestion: '이 문서, 도움이 됐어?',
+    helpfulYes: '응',
+    helpfulNo: '아니',
+    helpfulThanks: '고마워, 피드백 반영할게.',
+    lastModified: '방금 수정',
+    copy: '복사',
+    copied: '복사 완료',
+  },
+  nav: {
+    home: '개요',
+    sec1: '소개',
+    sec2: 'K-컬처라는 기회',
+    sec3: 'KLOVER 생태계',
+    sec4: '$KLVR',
+    sec5: '컬처 토큰',
+    sec6: 'KLOVER 플랫폼',
+    sec7: '생태계 거버넌스',
+    sec8: '컬처 토큰 런칭',
+    sec9: '로드맵',
+    sec10: '법률 및 컴플라이언스',
+    sec_security: '보안 및 감사',
+    sec_team: '팀',
+    sec_faq: '자주 묻는 질문',
+  },
+  home: {
+    eyebrow: 'K-컬처 Web3 생태계',
+    title1: '문화를',
+    title2: '토큰화',
+    lead: 'KLOVER는 전 세계 팬이 자신이 사랑하는 문화를 직접 소유하고, 그 방향에 영향을 주고, 깊이 참여하게 만드는 K-컬처 Web3 생태계. 그 모든 것을 담은 공식 문서.',
+    cta1: '시작하기',
+    cta2: '컬처 토큰 살펴보기',
+    byline: 'Life4Cut이 만든 생태계.',
+    cards: [
+      { t: '$KLVR', d: '생태계 전체를 움직이는 기축 토큰.' },
+      { t: '컬처 토큰', d: 'K-컬처 발행사가 발행하는 팬 소유권과 실제 유틸리티.' },
+      { t: 'KLOVER 플랫폼', d: '크립토 전문가가 아니라 팬을 위해 만든 쉬운 Web3.' },
+      { t: 'BASE 기반', d: '빠르고 저렴하고 안전한 인프라.' },
+    ],
+  },
+  pages: {
+    sec1: `<p class="kl-lead">KLOVER 공식 문서. KLOVER는 전 세계 팬이 자신이 사랑하는 문화를 직접 소유하고, 그 방향에 영향을 주고, 깊이 참여하게 만드는 K-컬처 Web3 생태계. 이 문서에서 KLOVER가 무엇인지, 생태계가 어떻게 돌아가는지, 팬과 파트너, 서포터가 어떻게 참여하는지 다룬다.</p>
+<h2 id="what">KLOVER란</h2>
+<p>KLOVER는 <strong>문화를 토큰화</strong>하기 위해 만든 Web3 생태계. 한국 문화, 즉 K-POP과 크리에이터, 이스포츠에서 출발해 전 세계로 확장. <strong>컬처 토큰</strong>을 통해 K-컬처 발행사와 글로벌 팬덤을 연결하고, 수동적인 팬심을 능동적인 참여와 소유로 바꾸는 디지털 자산. 생태계 전체는 <strong>BASE</strong> 블록체인 위에 구축.</p>
+<h2 id="audience">이 문서를 보면 좋은 사람</h2>
+<p>이 문서가 향하는 독자는 크게 셋:</p>
+<ul>
+<li><strong>팬</strong>. 컬처 토큰을 소유하고, 의사결정에 참여하고, 독점 경험에 닿고 싶은 사람.</li>
+<li><strong>K-컬처 발행사</strong>. 자기 커뮤니티를 온체인으로 가져오고 컬처 토큰을 런칭하는 길을 찾는 조직.</li>
+<li><strong>파트너와 서포터</strong>. 생태계와 $KLVR 토큰, 그리고 그 뒤의 비전을 이해하고 싶은 사람.</li>
+</ul>
+<p>처음부터 끝까지 읽어도 좋고, 필요한 섹션으로 바로 건너뛰어도 무방.</p>
+<h2 id="mission">미션: 문화를 토큰화</h2>
+<p>미션은 단순. <strong>문화를 토큰화</strong>. 팬은 그저 관객이 아니라 문화 가치를 함께 만드는 공동 창작자, KLOVER는 그 기여에 실체를 입히는 장치.</p>
+<p>출발점은 한국 문화, 비전은 전 세계 문화로의 확장. 어떤 문화든 그 커뮤니티와 함께 자라는 터전이 KLOVER.</p>
+<h2 id="brand">KLOVER 브랜드</h2>
+<p>KLOVER라는 이름에는 두 가지 의미. <strong>클로버</strong>는 행운과 성장을 뜻하는 보편적 상징. <strong>"K-Lover"</strong>는 K-컬처를 사랑하는 전 세계 커뮤니티. 둘이 겹쳐, 문화를 사랑하고 그 성장을 함께 키우는 사람들의 터전이라는 뜻.</p>
+<h2 id="life4cut">KLOVER를 만든 곳, Life4Cut</h2>
+<p>KLOVER를 세우고 운영하는 곳은 <strong>Life4Cut</strong>. 한국을 대표하는 포토부스 브랜드이자 K-컬처 경험에서 세계적으로 알려진 이름. Life4Cut은 KLOVER에 깊은 문화적 뿌리와 브랜드 신뢰, K-컬처 산업 전반의 직접적인 관계를 더한다. 아무나 따라오기 힘든 토대.</p>
+<h2 id="terminology">핵심 용어</h2>
+<p>이 문서 전반에 쓰이는 핵심 용어 정리:</p>
+<div class="kl-dl">
+<div class="row"><dt>KLOVER</dt><dd>K-컬처 Web3 생태계 전체와 그 소비자용 플랫폼.</dd></div>
+<div class="row"><dt>$KLVR</dt><dd>생태계를 움직이고 컬처 토큰을 사는 데 쓰이는 기축 토큰.</dd></div>
+<div class="row"><dt>컬처 토큰</dt><dd>K-컬처 발행사가 발행하고, 홀더에게 유틸리티를 여는 토큰.</dd></div>
+<div class="row"><dt>컬처 토큰 발행사</dt><dd>컬처 토큰을 발행하는 조직. 레이블, MCN, 이스포츠 팀 등.</dd></div>
+<div class="row"><dt>유틸리티</dt><dd>투표나 독점 경험처럼 컬처 토큰이 열어주는 혜택.</dd></div>
+<div class="row"><dt>BASE</dt><dd>KLOVER 생태계가 올라가 있는 블록체인.</dd></div>
+<div class="row"><dt>프리세일</dt><dd>2차 거래가 시작되기 전, KLOVER 플랫폼에서 진행되는 새 컬처 토큰의 최초 판매.</dd></div>
+<div class="row"><dt>유틸리티 허브</dt><dd>홀더가 컬처 토큰으로 투표하고 경험에 참여하는 플랫폼 공간.</dd></div>
+<div class="row"><dt>Web3</dt><dd>퍼블릭 블록체인 위에서 사용자가 디지털 자산을 진짜로 소유하는 인터넷 영역.</dd></div>
+</div>`,
+    sec2: `<p class="kl-lead">K-컬처는 이미 글로벌 현상. 그런데 팬과 그들이 키워낸 문화 사이의 관계는 여전히 한 방향. KLOVER는 그 간극을 메우려고 존재.</p>
+<h2 id="phenomenon">글로벌 현상이 된 K-컬처</h2>
+<p>음악에서 영화, 게임까지 한국 문화는 거대하고 열성적인 글로벌 팬층을 거느린다. K-컬처 팬덤은 세계에서 가장 몰입도 높고 창의적이며 충성도 강한 커뮤니티. 한국 밖에서도 트렌드를 이끌고 시장을 움직이는 힘.</p>
+<h2 id="gap">팬 참여의 간극</h2>
+<p>지금 팬은 스트리밍과 굿즈, 직관으로 애정을 표현. 그러나 자신이 응원하는 문화에 <strong>실질적인 발언권</strong>도, 자신이 만든 가치에 대한 <strong>지분</strong>도 없다. 열정은 막대한데 참여는 소비에 머무는 구조.</p>
+<h2 id="economic-layer">빠져 있는 경제적 레이어</h2>
+<p>가치는 팬을 <em>거쳐</em> 흐르지 않고 팬 <em>주변</em>으로 흐른다. 팬덤이 만든 경제적 가치 대부분은 플랫폼과 중개자에게 돌아가고, 정작 그 가치를 만든 팬은 바깥에 남는다. 팬과, 그들이 움직이는 문화를 잇는 경제적 레이어의 부재.</p>
+<h2 id="why-kculture">왜 K-컬처에서 시작하나</h2>
+<p>K-컬처가 출발점으로 자연스러운 이유:</p>
+<ul>
+<li>팬덤이 글로벌하고, 몰입도가 높고, 이미 온라인에서 활발.</li>
+<li>레이블이나 MCN 같은 조직은 아티스트 한 명보다 훨씬 오래 가고, 동시에 많은 팬을 품는다.</li>
+<li>새로운 플랫폼과 포맷을 빠르게 받아들이는 수용성.</li>
+<li>KLOVER를 만든 Life4Cut이 K-컬처 산업 전반에 직접적인 관계를 보유.</li>
+</ul>
+<h2 id="who-benefits">누구에게 이로운가</h2>
+<ul>
+<li><strong>팬</strong>은 소유권과 의사결정 발언권, 이전엔 닿지 못한 경험을 얻는다.</li>
+<li><strong>발행사</strong>는 커뮤니티와 새롭게 호흡하는 방식, 그리고 새로운 수익원을 얻는다.</li>
+<li><strong>생태계</strong>는 새 커뮤니티가 합류할 때마다 활동과 수요가 쌓이며 단단해진다.</li>
+</ul>
+<h2 id="why-web3">왜 Web3, 왜 지금인가</h2>
+<p>블록체인이 등장하면서 이제 팬에게 <strong>검증 가능한 소유권</strong>, <strong>직접적인 영향력</strong>, <strong>함께 나눠 갖는 성장의 몫</strong>을 줄 수 있다. KLOVER는 이 기술을 투기가 아니라 팬심을 진짜 참여로 바꾸는 데 쓴다. 타이밍도 맞다. K-컬처는 이미 글로벌하고, 받쳐줄 인프라도 이제 갖춰졌다.</p>`,
+    sec3: `<p class="kl-lead">KLOVER 생태계는 문화를 토큰화하기 위해 맞물려 돌아가는 네 개의 축으로 구성.</p>
+<h2 id="architecture">아키텍처 개요</h2>
+<p>KLOVER는 네 가지 요소를 하나의 매끄러운 루프로 잇는다. 생태계의 기축 토큰 <strong>$KLVR</strong>, 팬이 보유하는 자산 <strong>컬처 토큰</strong>, 모든 일이 일어나는 <strong>KLOVER 플랫폼</strong>, 그리고 그 모두에 생명을 불어넣는 <strong>팬</strong>. 넷이 서로를 강화한다.</p>
+<h2 id="pillars">네 개의 축</h2>
+<div class="kl-cards">
+<div class="kl-card"><div class="ic">01</div><div class="ct">$KLVR</div><div class="cd">생태계를 움직이고 컬처 토큰을 사는 데 반드시 필요한 기축 토큰.</div></div>
+<div class="kl-card"><div class="ic">02</div><div class="ct">컬처 토큰</div><div class="cd">K-컬처 발행사가 발행하고 팬에게 실제 유틸리티를 여는 토큰.</div></div>
+<div class="kl-card"><div class="ic">03</div><div class="ct">KLOVER 플랫폼</div><div class="cd">컬처 토큰을 사고 거래하고 사용하는 모든 것의 집.</div></div>
+<div class="kl-card"><div class="ic">04</div><div class="ct">팬</div><div class="cd">소유와 참여, 그리고 에너지로 생태계에 가치를 불어넣는 전 세계 커뮤니티.</div></div>
+</div>
+<h2 id="how-it-works">전체 흐름, 처음부터 끝까지</h2>
+<p>생태계를 거치는 전형적인 여정:</p>
+<ol>
+<li>팬이 <strong>$KLVR</strong>를 확보하거나, $KLVR 또는 USDT를 플랫폼에 입금.</li>
+<li>응원하는 발행사의 <strong>컬처 토큰</strong>을 고른다.</li>
+<li>그 토큰의 <strong>프리세일</strong>에 참여하거나, 2차 시장에서 매수.</li>
+<li><strong>유틸리티 허브</strong>에서 토큰으로 투표하고 경험에 참여.</li>
+<li><strong>$KLVR</strong>를 보유해 생태계 거버넌스에 참여.</li>
+</ol>
+<h2 id="flywheel">경제적 플라이휠</h2>
+<p>생태계는 스스로를 강화하는 루프로 설계:</p>
+<ul>
+<li>컬처 토큰 수요가 <strong>$KLVR</strong> 수요를 끌어올린다.</li>
+<li>활발한 플랫폼이 더 많은 <strong>컬처 토큰 발행사</strong>를 부른다.</li>
+<li>발행사가 늘면 <strong>팬</strong>이 늘어난다.</li>
+<li>팬이 늘면 생태계 전반의 수요가 깊어진다.</li>
+</ul>
+<h2 id="base">BASE 기반</h2>
+<p>KLOVER는 이더리움급 보안을 갖춘 안전하고 믿을 만한 블록체인 <strong>BASE</strong> 위에 올라간다. BASE를 택한 이유는 네 가지:</p>
+<ul>
+<li><strong>낮은 수수료</strong>. 일상적인 행동을 팬에게 부담 없이.</li>
+<li><strong>빠른 처리</strong>. 거의 즉각적으로 느껴지는 경험.</li>
+<li><strong>강력한 보안</strong>. 이더리움에서 그대로 이어받은 안정성.</li>
+<li><strong>넓은 호환성</strong>. 표준 Web3 지갑과 도구에 그대로.</li>
+</ul>
+<p>크립토를 한 번도 써본 적 없는 팬에게도 매끄럽게 돌아가는 인프라.</p>`,
+    sec4: `<p class="kl-lead">$KLVR는 생태계 한가운데 자리한 기축 토큰. 모든 가치가 흐르는 통로.</p>
+<h2 id="role">$KLVR의 역할</h2>
+<p>$KLVR는 생태계 전체의 교환 수단. 컬처 토큰을 사는 데 반드시 쓰이고, 플랫폼 거래에 사용되며, 홀더에게 생태계 거버넌스 발언권을 준다. KLOVER 안에서 가치가 움직이는 곳에는 늘 $KLVR.</p>
+<h2 id="utility">토큰 유틸리티</h2>
+<ul>
+<li><strong>컬처 토큰 구매:</strong> 컬처 토큰은 오직 $KLVR로만 살 수 있고, 이것이 꾸준하고 구조적인 수요를 만든다.</li>
+<li><strong>거버넌스:</strong> $KLVR 홀더는 KLOVER 팀이 올린 안건에 투표.</li>
+<li><strong>플랫폼 통화:</strong> $KLVR가 플랫폼 전반의 거래와 활동을 매개.</li>
+</ul>
+<h2 id="demand">수요의 원천</h2>
+<p>$KLVR 수요는 투기만이 아니라 생태계 안의 실제 사용에서 나온다:</p>
+<ul>
+<li><strong>컬처 토큰 구매</strong>. 모든 컬처 토큰을 $KLVR로 사기 때문.</li>
+<li><strong>플랫폼 활동</strong>. 거래가 생태계 자체 토큰으로 정산되기 때문.</li>
+<li><strong>거버넌스</strong>. $KLVR 보유가 곧 의사결정 발언권이기 때문.</li>
+</ul>
+<h2 id="standard">토큰 표준</h2>
+<p>$KLVR는 BASE 블록체인에 배포된 ERC-20 토큰. 표준 Web3 지갑과 도구에 그대로 호환. 공식 컨트랙트 주소는 <span class="kl-tbd">미정</span>, 런칭 전에 이곳에 공개.</p>
+<h2 id="tokenomics">토크노믹스</h2>
+<p>총발행량, 배분, 베스팅 일정, 발행과 소각 메커니즘 등 상세 토크노믹스는 막바지 정리 중.</p>
+<div class="kl-soon"><span class="kl-soon-badge">준비 중</span><span class="kl-soon-sub">전체 토크노믹스는 이곳에 공개.</span></div>
+<h2 id="acquire">$KLVR 확보 방법</h2>
+<p>팬은 KLOVER 플랫폼에서 바로 $KLVR를 확보. 입문자를 위한 간단한 온보딩 경험으로 설계. 지원하는 확보 수단과 이용 범위는 <span class="kl-tbd">미정</span>.</p>`,
+    sec5: `<p class="kl-lead">컬처 토큰은 팬과 K-컬처 발행사를 잇는 자산. 하나하나가 문화 조직이 발행하고, 홀더에게 실제 유틸리티를 연다.</p>
+<h2 id="what-ct">컬처 토큰이란</h2>
+<p><strong>컬처 토큰</strong>은 K-컬처 발행사, 즉 음악 레이블이나 MCN, 이스포츠 팀이 발행하는 디지털 토큰. 그 커뮤니티의 멤버십을 증명하고 독점 유틸리티를 연다. 한 장을 쥐는 것은 사랑하는 문화와의 직접 연결.</p>
+<h2 id="who">누가 컬처 토큰을 발행하나</h2>
+<p>컬처 토큰은 개인이 아니라 <strong>자리 잡은 문화 조직</strong>이 발행. 그래야 수명이 길고 유틸리티의 폭도 넓다. 조직은 아티스트 한 명이나 한 시즌보다 오래 가고, 여러 프로젝트에 걸쳐 많은 팬을 품기 때문. <em>(자세한 내용은 <a data-nav="sec8" href="#sec8">컬처 토큰 런칭</a> 참고.)</em></p>
+<h2 id="utilities">컬처 토큰 유틸리티</h2>
+<p>컬처 토큰은 점점 넓어지는 유틸리티를 연다. 예를 들면:</p>
+<ul>
+<li><strong>투표:</strong> 발행사가 미리 승인한 선택지 안에서 팬이 결정. 다음 싱글 커버 아트, 콘서트 의상, 새 프로필 사진 같은 것. 발행사가 정한 울타리 안에서, 팬이 실제 결과를 빚는다.</li>
+<li><strong>경험:</strong> 아티스트와의 식사 추첨, 콘서트 티켓 우선 구매, 팬미팅 우선권 등.</li>
+<li><strong>확장되는 유틸리티:</strong> 발행사가 커뮤니티에 보답하는 새 방식을 설계하면서 유틸리티도 계속 늘어난다.</li>
+</ul>
+<div class="kl-hint info"><div class="h-ic"></div><div class="h-body">투표는 늘 발행사가 큐레이션. 팬은 발행사가 이미 승인한 선택지 안에서 고른다.</div></div>
+<h2 id="how-voting">투표는 어떻게 굴러가나</h2>
+<p>투표는 분명한 울타리 안에서 팬에게 진짜 발언권을 준다:</p>
+<ol>
+<li>발행사가 안건과 승인된 선택지를 준비.</li>
+<li>컬처 토큰 홀더가 정해진 기간 동안 투표.</li>
+<li>그 결과가 발행사의 최종 결정을 이끈다.</li>
+</ol>
+<p>선택지를 미리 정해두기에 투표는 늘 의미 있고 브랜드에 어긋나지 않는다.</p>
+<h2 id="lifecycle">컬처 토큰의 라이프사이클</h2>
+<ul>
+<li><strong>프리세일:</strong> KLOVER 플랫폼에서의 최초 배분.</li>
+<li><strong>2차 거래:</strong> 플랫폼에 내장된 마켓플레이스에서 팬끼리 거래.</li>
+<li><strong>지속 유틸리티:</strong> 홀더는 투표와 경험, 그 밖의 유틸리티를 꾸준히 사용.</li>
+</ul>
+<h2 id="ct-klover">컬처 토큰과 $KLVR</h2>
+<p>컬처 토큰과 $KLVR는 함께 움직인다. $KLVR는 생태계의 기축 토큰이고, 모든 컬처 토큰은 $KLVR로 산다. 컬처 토큰은 한 발행사의 유틸리티를 담고, $KLVR는 생태계 전체의 가치와 거버넌스를 담는다.</p>
+<h2 id="value">보유의 가치</h2>
+<p>컬처 토큰을 쥔다는 것은 곧 <strong>소속</strong>. 영향력에 곧장 닿는 통로이자 남들은 못 누리는 접근권, 그리고 한 발행사의 문화적 여정에 함께 거는 지분. 일상의 팬심이 멤버십이 되는 순간.</p>`,
+    sec6: `<p class="kl-lead">KLOVER 플랫폼은 생태계의 집. 크립토 전문가가 아니어도 누구나 참여하도록 설계.</p>
+<h2 id="philosophy">플랫폼 철학: 장벽 없는 Web3</h2>
+<p>KLOVER는 <strong>팬 우선</strong>으로 만든다. 플랫폼은 블록체인의 복잡함을 익숙하고 직관적인 경험 뒤로 감춘다. $KLVR나 USDT를 입금할 수 있다면 누구나 온전히 참여. <strong>크립토 경험은 필요 없다.</strong></p>
+<h2 id="newcomers">입문자를 위한 설계</h2>
+<p>대부분의 팬은 크립토 전문가가 아니고, 그럴 필요도 없다. 플랫폼은 익숙한 허들을 걷어낸다:</p>
+<ul>
+<li>지갑이나 가스, 개인키를 몰라도 시작 가능.</li>
+<li>트레이딩 터미널이 아니라 일반 앱에 가까운 익숙한 화면.</li>
+<li>컬처 토큰을 사고 보유하고 쓰는 분명한 단계.</li>
+</ul>
+<h2 id="getting-started">시작하기</h2>
+<p>몇 단계면 충분:</p>
+<ol><li>KLOVER 계정 생성.</li><li><strong>$KLVR</strong>나 <strong>USDT</strong> 입금.</li><li>컬처 토큰 프리세일에 참여하고, 거래하고, 유틸리티 사용.</li></ol>
+<h2 id="deposits">입금과 출금</h2>
+<p>계정은 <strong>$KLVR</strong>나 <strong>USDT</strong>로 충전. 충전을 마치면 프리세일에 참여하고, 컬처 토큰을 거래하고, 유틸리티를 쓸 수 있다. 지원 네트워크와 전체 입출금 옵션은 <span class="kl-tbd">미정</span>.</p>
+<h2 id="features">플랫폼 기능</h2>
+<ul>
+<li><strong>컬처 토큰 프리세일:</strong> 새로 런칭하는 컬처 토큰을 가장 먼저 확보.</li>
+<li><strong>거래:</strong> 내장 마켓플레이스에서 컬처 토큰 매매.</li>
+<li><strong>유틸리티 허브:</strong> 투표하고, 추첨과 경험에 참여하는 모든 것을 한곳에서.</li>
+</ul>
+<h2 id="fees">수수료 구조</h2>
+<p>KLOVER는 거래 같은 플랫폼 활동에 붙는 투명한 수수료로 생태계를 지탱. 정확한 요율은 <span class="kl-tbd">미정</span>, 전체 표는 런칭 전에 공개.</p>
+<h2 id="security">인프라와 보안</h2>
+<p><strong>BASE</strong> 위에 올라간 플랫폼은 블록체인 수준의 보안에, 대중 사용자를 위한 커스터디와 온보딩 경험을 더한다. 팬은 탈중앙 인프라의 안전함을 일반 앱의 편안함과 함께 누린다.</p>`,
+    sec7: `<p class="kl-lead">KLOVER는 커뮤니티에 목소리를 준다. 생태계 거버넌스를 통해 $KLVR 홀더가 생태계의 방향을 함께 잡는다.</p>
+<h2 id="gov-philosophy">거버넌스 철학</h2>
+<p>KLOVER의 거버넌스는 <strong>팀이 큐레이션하고 커뮤니티가 결정</strong>하는 구조. KLOVER 팀이 안건을 올리고, $KLVR 홀더가 결과를 정한다. 덕분에 안건은 늘 현실적이고 실행 가능하면서, 진짜 결정은 커뮤니티 손에.</p>
+<h2 id="how">생태계 거버넌스가 굴러가는 방식</h2>
+<ol>
+<li><strong>KLOVER 팀</strong>이 안건을 제출.</li>
+<li><strong>$KLVR 홀더</strong>가 보유량에 따른 가중치로 투표.</li>
+<li>그 결과를 팀이 <strong>실행</strong>.</li>
+</ol>
+<h2 id="voting-power">투표 가중치</h2>
+<p>투표 가중치는 홀더가 투표에 실은 $KLVR 양에 따라 정해진다. $KLVR를 많이 쥘수록 표의 무게도 커진다. 한도나 락업을 포함한 정확한 방식은 <span class="kl-tbd">미정</span>.</p>
+<h2 id="examples">거버넌스로 정하는 것들</h2>
+<p>거버넌스는 생태계 전반에 영향을 주는 사안에 집중. 예를 들면:</p>
+<ul>
+<li>새 기능과 유틸리티의 우선순위.</li>
+<li>생태계 프로그램과 이니셔티브의 방향.</li>
+<li>생태계 운영을 좌우하는 일부 파라미터.</li>
+</ul>
+<h2 id="scope">거버넌스의 범위</h2>
+<p>생태계 거버넌스는 팀이 올리는 생태계 차원의 사안, 즉 더 넓은 KLOVER 커뮤니티에 영향을 주는 방향과 우선순위, 이니셔티브를 다룬다. 투표로 정할 수 있는 사안의 정확한 범위는 <span class="kl-tbd">미정</span>.</p>
+<h2 id="vs">생태계 거버넌스 vs 컬처 토큰 투표</h2>
+<div class="kl-hint accent"><div class="h-ic"></div><div class="h-body">KLOVER에는 <strong>전혀 다른 두 개의 투표 체계</strong>. 헷갈리지 말 것.</div></div>
+<div class="kl-dl">
+<div class="row"><dt>생태계 거버넌스</dt><dd><strong>$KLVR</strong>로 진행. KLOVER 전체에 걸친 생태계 차원의 사안을 결정.</dd></div>
+<div class="row"><dt>컬처 토큰 투표</dt><dd>특정 <strong>컬처 토큰</strong>으로 진행. 한 발행사 커뮤니티 안의 사안을 결정. 예를 들면 앨범 커버.</dd></div>
+</div>`,
+    sec8: `<p class="kl-lead">KLOVER는 자리 잡은 K-컬처 조직과 손잡고 그 커뮤니티를 온체인으로 가져온다. 잠재 파트너를 위한 큰 그림.</p>
+<h2 id="who-partner">어떤 조직이 KLOVER와 맞나</h2>
+<p>KLOVER는 <strong>열성적인 글로벌 팬층</strong>과 K-컬처에서의 <strong>오랜 존재감</strong>을 가진 조직을 위한 곳. 컬처 토큰을 개인이 아니라 조직이 발행하기에, 파트너는 여러 아티스트와 크리에이터, 프로젝트에 걸쳐 오래가는 가치를 줄 수 있다.</p>
+<h2 id="categories">참여 가능한 파트너 유형</h2>
+<ul>
+<li><strong>K-POP 엔터테인먼트 기업</strong></li>
+<li><strong>한국 유튜브 MCN 기업</strong></li>
+<li><strong>한국 이스포츠 조직</strong></li>
+</ul>
+<p>그리고 글로벌 팬층을 가진 그 밖의 자리 잡은 K-컬처 조직.</p>
+<h2 id="eligibility">자격</h2>
+<p>KLOVER는 커뮤니티에 오래가는 가치를 줄 수 있는 파트너를 찾는다. 보통은 글로벌 팬층, 활발한 팬덤, K-컬처에서의 트랙 레코드가 신호. 전체 자격 기준은 <span class="kl-tbd">미정</span>, 심사 과정에서 확정.</p>
+<h2 id="receive">파트너가 얻는 것</h2>
+<ul>
+<li>완성된 플랫폼과 인프라. Web3를 내부에서 직접 만들 필요가 없다.</li>
+<li>전 세계 문화 팬 커뮤니티로의 접근.</li>
+<li>투표와 경험 같은 유틸리티, 그리고 거버넌스를 위한 도구.</li>
+<li>팬과의 새로운 접점, 그리고 새 수익원.</li>
+</ul>
+<h2 id="process">런칭 과정</h2>
+<p>큰 틀에서 컬처 토큰 런칭은 다음 단계를 거친다:</p>
+<ol>
+<li><strong>문의.</strong> 조직이 KLOVER 팀에 연락.</li>
+<li><strong>검토.</strong> 양측이 핏과 목표, 자격을 확인.</li>
+<li><strong>설계.</strong> 토큰과 유틸리티, 런칭 플랜을 함께 다듬는다.</li>
+<li><strong>프리세일.</strong> 컬처 토큰을 플랫폼에서 팬에게 공개.</li>
+<li><strong>런칭.</strong> 거래와 유틸리티가 라이브되고, 커뮤니티가 거기서부터 자라난다.</li>
+</ol>
+<h2 id="revenue">파트너 수익 모델</h2>
+<p>파트너는 컬처 토큰 프리세일과 이후의 플랫폼 활동에서 수익을 낸다. 구체적인 조건과 수익 배분 구조는 <span class="kl-tbd">미정</span>, 온보딩 과정에서 파트너별로 맞춘다.</p>
+<h2 id="inquiry">파트너 문의와 다음 단계</h2>
+<p>컬처 토큰 런칭에 관심 있는 조직은 KLOVER 팀에 연락. 공식 파트너십 연락처:</p>
+<div class="kl-soon"><span class="kl-soon-badge">준비 중</span><span class="kl-soon-sub">파트너십 연락처는 이곳에 공개.</span></div>`,
+    sec9: `<p class="kl-lead">지금 이 자리에서 어떤 문화든 토큰화되는 세상까지, 어떻게 갈지에 대한 그림. 아래 단계들은 핵심 인프라 구축부터 K-컬처를 한참 넘어서는 확장까지, 전체 여정을 펼친 것. 목표 시점은 <span class="kl-tbd">미정</span>, 각 단계에 가까워질 때마다 공유.</p>
+<div class="kl-timeline">
+<div class="kl-tl-item"><div class="kl-tl-dot"></div><div class="kl-tl-phase">1단계</div><h2 id="phase-1" class="kl-tl-title">기반 구축</h2><div class="kl-tl-body">모든 것이 올라갈 기술적 뼈대를 만드는 단계. $KLVR와 컬처 토큰 스마트 컨트랙트를 BASE에 배포하고, KLOVER 플랫폼을 개발하고, 보안과 컴플라이언스의 토대를 다진다. 지금은 대부분의 눈에 보이지 않는 작업이지만, 뒤에 오는 모든 것을 가능하게 만드는 단계.</div></div>
+<div class="kl-tl-item future"><div class="kl-tl-dot"></div><div class="kl-tl-phase">2단계</div><h2 id="phase-2" class="kl-tl-title">Bloom 캠페인</h2><div class="kl-tl-body">토큰이 라이브되기 전, Bloom을 통해 커뮤니티에 먼저 문을 연다. Bloom은 KLOVER의 초기 커뮤니티 프로그램. 참여자는 의미 있는 방식으로 생태계에 기여하고 Bloom 포인트를 모으며, 이 포인트는 런칭 시 $KLVR 리워드로 전환. 세상이 다 들어오기 전에 미리 자기 지분을 쌓는 가장 빠른 길. 그저 빠른 게 중요한 게 아니라, 일찍 믿어준 사람을 기억하는 방식이 Bloom.</div></div>
+<div class="kl-tl-item future"><div class="kl-tl-dot"></div><div class="kl-tl-phase">3단계</div><h2 id="phase-3" class="kl-tl-title">$KLVR VIP 프리세일</h2><div class="kl-tl-body">$KLVR를 손에 쥐는 첫 번째 진짜 기회. 이 프리세일은 화이트리스트 참여자, 즉 Bloom 캠페인 기여자와 검증된 커뮤니티 멤버에게만 열린다. 퍼블릭 런칭 전의 제한된 창이고, 배정 물량은 심사 과정에서 확정. Bloom에 함께했다면, 일찍 나선 것에 대한 보상.</div></div>
+<div class="kl-tl-item future"><div class="kl-tl-dot"></div><div class="kl-tl-phase">4단계</div><h2 id="phase-4" class="kl-tl-title">$KLVR 런칭</h2><div class="kl-tl-body">$KLVR가 전 세계에 공개되는 순간. 런칭은 KLOVER가 본격적으로 문을 열었다는 공개 선언. 생태계가 공식적으로 열리고, 앞선 단계에서 쌓아온 인프라가 본격 가동되며, 여기서부터 모든 것이 빨라진다.</div></div>
+<div class="kl-tl-item future"><div class="kl-tl-dot"></div><div class="kl-tl-phase">5단계</div><h2 id="phase-5" class="kl-tl-title">KLOVER 플랫폼</h2><div class="kl-tl-body">$KLVR가 라이브된 뒤 KLOVER 플랫폼이 모두에게 열린다. 팬은 계정을 만들고, $KLVR나 USDT를 입금하고, 컬처 토큰 프리세일에 참여. 유틸리티 허브가 열려 홀더는 투표하고, 경험에 참여하고, 아끼는 커뮤니티와 교감. KLOVER가 개념을 넘어 매일 쓰는 무언가가 되는 지점.</div></div>
+<div class="kl-tl-item future"><div class="kl-tl-dot"></div><div class="kl-tl-phase">6단계</div><h2 id="phase-6" class="kl-tl-title">첫 컬처 토큰</h2><div class="kl-tl-body">첫 K-컬처 발행사들을 온보딩하고, 그들의 컬처 토큰을 플랫폼에 런칭. 팬은 프리세일에 참여해 첫 토큰을 손에 넣고, 실제 유틸리티를 쓰기 시작. 이 초기 커뮤니티들이 KLOVER의 분위기를 좌우하는 만큼, 첫 파트너는 신중하게 고른다.</div></div>
+<div class="kl-tl-item future"><div class="kl-tl-dot"></div><div class="kl-tl-phase">7단계</div><h2 id="phase-7" class="kl-tl-title">생태계 확장</h2><div class="kl-tl-body">토대가 검증된 뒤엔 성장. K-POP, MCN, 이스포츠 전반에서 더 많은 발행사가 합류. 발행사들이 자기 커뮤니티가 무엇에 반응하는지 익히면서 유틸리티의 폭도 넓어진다. 네트워크 효과가 작동하고, 새 커뮤니티 하나하나가 이미 들어와 있는 모두에게 플랫폼을 더 단단하게 만든다.</div></div>
+<div class="kl-tl-item future"><div class="kl-tl-dot"></div><div class="kl-tl-phase">비전</div><h2 id="vision" class="kl-tl-title">K-컬처를 넘어</h2><div class="kl-tl-body">K-컬처를 위해 만든 모델이 거기서 멈출 이유는 없다. 플레이북이 검증되면 KLOVER는 전 세계 문화를 토큰화하는 방향으로 확장. 열정적인 글로벌 커뮤니티라면, 한 조각 소유할 가치가 있는 문화라면, 모두 이곳에. 비전은 단순. <strong>문화를 토큰화</strong>. 전부 다.</div></div>
+</div>`,
+    sec10: `<p class="kl-lead">KLOVER는 컴플라이언스를 핵심에 두고 운영. 아래 내용을 꼼꼼히 확인할 것.</p>
+<h2 id="geography">이용 가능 지역</h2>
+<p>KLOVER는 어디에 있든 팬을 위해 만들어졌고, 대부분의 해외 시장에서 이용 가능. 다만 관련 법령에 따라 제재 대상 국가와 일부 지역에서는 접근이 제한. 제한 대상에는 이란, 북한, 시리아처럼 국제 제재를 받는 국가, 그리고 대한민국, 그 밖에 현지 규정상 참여가 막힐 수 있는 시장. 제한 지역 전체 목록은 런칭 전에 확정해 공개.</p>
+<h2 id="eligibility-legal">이용 자격</h2>
+<p>KLOVER 생태계 이용은 거주 지역과 이용자에 따라 달라질 수 있다. 이용자는 자기 시장의 최소 연령과 적용 요건을 충족해야 하고, 제한 지역에 있어서는 안 된다. 전체 자격 요건은 <span class="kl-tbd">미정</span>.</p>
+<h2 id="regulatory">규제 원칙</h2>
+<p>KLOVER는 책임감 있게 운영하고, 진출하는 시장의 규제 프레임워크에 맞춰 적응하는 것을 원칙으로 한다. 단기 확장보다 장기적 지속 가능성과 이용자 보호가 먼저.</p>
+<h2 id="privacy">개인정보</h2>
+<p>KLOVER는 개인정보를 책임감 있게, 진출 시장의 규정에 맞춰 다룬다. 전체 개인정보 처리방침은 런칭 전에 공개.</p>
+<h2 id="disclaimer">위험 고지</h2>
+<div class="kl-hint warning"><div class="h-ic"></div><div class="h-body">디지털 토큰에는 가치 하락 가능성을 비롯한 위험이 따른다. 이 문서는 <strong>정보 제공 목적</strong>일 뿐, 금융, 투자, 법률 자문이 아니다. 어떤 자산의 매수나 매도를 권유하거나 청약하는 것도 아니다. 반드시 스스로 조사하고 판단할 것.</div></div>`,
+    sec_security: `<div class="kl-soon"><span class="kl-soon-badge">준비 중</span><span class="kl-soon-sub">보안 정책과 외부 감사 보고서는 이곳에 공개.</span></div>`,
+    sec_team: `<div class="kl-soon"><span class="kl-soon-badge">준비 중</span><span class="kl-soon-sub">KLOVER를 만드는 팀은 이곳에 소개.</span></div>`,
+    sec_faq: `<div class="kl-soon"><span class="kl-soon-badge">준비 중</span><span class="kl-soon-sub">자주 묻는 질문과 답변은 이곳에 정리.</span></div>`,
+  },
+};
+
 /* __TRANSLATIONS_INJECT__ */
 
 /* ============================================================
@@ -956,6 +1265,7 @@ I18N.en = {
     scrim: document.getElementById('scrim'),
   };
   let current = parseRoute();
+  lang = current.lang || lang; KL_LANG = lang;
 
   /* ---------- THEME ---------- */
   function applyTheme(theme) {
@@ -992,11 +1302,12 @@ I18N.en = {
     });
   }
   function setLang(code) {
-    lang = code;
+    lang = code; KL_LANG = code;
     lsSet(LS_LANG, code);
     document.documentElement.setAttribute('lang', code);
     const meta = LANGS.find(l => l.code === code);
     el.langCurrent.textContent = meta ? meta.native : 'English';
+    history.replaceState({ section: current.section }, '', sectionToPath(current.section));
     applyStaticI18n(); buildLangMenu(); renderNav(); renderPage(current, false);
   }
   function openLangMenu() { el.langDropdown.classList.add('open'); el.langBtn.setAttribute('aria-expanded', 'true'); const f = el.langMenu.querySelector('.kl-lang-opt'); if (f) f.focus(); }
@@ -1065,8 +1376,10 @@ I18N.en = {
   function parseRoute() {
     let path = window.location.pathname.slice(BASE.length) || '/';
     if (!path.startsWith('/')) path = '/' + path;
+    let routeLang = 'en';
+    if (path === '/kor' || path.indexOf('/kor/') === 0) { routeLang = 'ko'; path = path.slice(4) || '/'; }
     if (path !== '/' && path.endsWith('/')) path = path.slice(0, -1);
-    return { section: PATH_TO_ID[path] || 'home' };
+    return { section: PATH_TO_ID[path] || 'home', lang: routeLang };
   }
   function navigate(id) {
     history.pushState({ section: id }, '', sectionToPath(id));
@@ -1074,7 +1387,17 @@ I18N.en = {
     renderPage(current, false);
     renderNav();
   }
-  window.addEventListener('popstate', () => { current = parseRoute(); renderPage(current, true); renderNav(); });
+  window.addEventListener('popstate', () => {
+    current = parseRoute();
+    if (current.lang !== lang) {
+      lang = current.lang; KL_LANG = lang;
+      document.documentElement.setAttribute('lang', lang);
+      const meta = LANGS.find(l => l.code === lang);
+      el.langCurrent.textContent = meta ? meta.native : 'English';
+      applyStaticI18n(); buildLangMenu();
+    }
+    renderPage(current, true); renderNav();
+  });
 
   /* ---------- RENDER ---------- */
   function renderPage(route, doScroll) {
