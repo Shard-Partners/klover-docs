@@ -3,8 +3,15 @@
 <head>
 <meta charset="utf-8">
 <title>KLOVER Docs</title>
-<script>sessionStorage.setItem('klover-redirect',location.pathname);</script>
-<meta http-equiv="refresh" content="0;URL=/klover-docs/">
+<script>
+  // GitHub Pages SPA fallback: remember the deep path, then bounce to the
+  // project root. The base (repo name) is auto-detected so this works in any repo.
+  (function () {
+    sessionStorage.setItem('klover-redirect', location.pathname + location.search);
+    var base = '/' + (location.pathname.split('/')[1] || '') + '/';
+    location.replace(base);
+  }());
+</script>
 </head>
 <body></body>
 </html>
