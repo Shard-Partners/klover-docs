@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KLOVER Docs</title>
+<meta name="description" content="Official documentation for KLOVER, the K-Culture Web3 ecosystem." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231F5236'%3E%3Ccircle cx='12' cy='7.5' r='3.6'/%3E%3Ccircle cx='7.5' cy='12' r='3.6'/%3E%3Ccircle cx='16.5' cy='12' r='3.6'/%3E%3Ccircle cx='12' cy='16.5' r='3.6'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;450;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   KLOVER documentation base styles
+   ============================================================ */
+:root {
+  --kl-bg: #ffffff;
+  --kl-bg-subtle: #f7f8fa;
+  --kl-bg-elevated: #ffffff;
+  --kl-text: #1b1f24;
+  --kl-text-muted: #5b6571;
+  --kl-text-faint: #6b7280;
+  --kl-border: #e8eaed;
+  --kl-border-strong: #d6dae0;
+  --kl-accent: #16a34a;
+  --kl-accent-hover: #128a3e;
+  --kl-accent-soft: rgba(22, 163, 74, 0.10);
+  --kl-accent-text: #0f7a37;
+  --kl-code-bg: #f6f8fa;
+  --kl-code-text: #b3216f;
+  --kl-info: #2563eb;   --kl-info-bg: rgba(37,99,235,.08);
+  --kl-success: #16a34a; --kl-success-bg: rgba(22,163,74,.09);
+  --kl-warning: #d97706; --kl-warning-bg: rgba(217,119,6,.10);
+  --kl-danger: #dc2626;  --kl-danger-bg: rgba(220,38,38,.08);
+  --kl-shadow: 0 1px 2px rgba(16,24,40,.04), 0 4px 16px rgba(16,24,40,.06);
+  --kl-shadow-lg: 0 12px 40px rgba(16,24,40,.16);
+  --kl-header-h: 60px;
+  --kl-sidebar-w: 296px;
+  --kl-toc-w: 240px;
+  --kl-content-max: 768px;
+  --kl-radius: 10px;
+  --kl-font: 'Inter', 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --kl-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+}
+[data-theme="dark"] {
+  --kl-bg: #0e1116;
+  --kl-bg-subtle: #161a20;
+  --kl-bg-elevated: #161a20;
+  --kl-text: #e6edf3;
+  --kl-text-muted: #9aa4b0;
+  --kl-text-faint: #868f9b;
+  --kl-border: #242a31;
+  --kl-border-strong: #313840;
+  --kl-accent: #2ec571;
+  --kl-accent-hover: #43d182;
+  --kl-accent-soft: rgba(46,197,113,.14);
+  --kl-accent-text: #4ade80;
+  --kl-code-bg: #1c2128;
+  --kl-code-text: #f0a6c8;
+  --kl-info: #60a5fa;   --kl-info-bg: rgba(96,165,250,.12);
+  --kl-success: #4ade80; --kl-success-bg: rgba(74,222,128,.12);
+  --kl-warning: #fbbf24; --kl-warning-bg: rgba(251,191,36,.12);
+  --kl-danger: #f87171;  --kl-danger-bg: rgba(248,113,113,.12);
+  --kl-shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.4);
+  --kl-shadow-lg: 0 12px 40px rgba(0,0,0,.6);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--kl-header-h) + 24px); }
+body { margin: 0; font-family: var(--kl-font); background: var(--kl-bg); color: var(--kl-text); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; line-height: 1.6; }
+a { color: var(--kl-accent-text); text-decoration: none; }
+a:hover { text-decoration: underline; }
+::selection { background: var(--kl-accent-soft); }
+
+/* ---------- Header ---------- */
+.kl-header { position: fixed; top: 0; left: 0; right: 0; height: var(--kl-header-h); display: flex; align-items: center; gap: 16px; padding: 0 20px; background: color-mix(in srgb, var(--kl-bg) 88%, transparent); backdrop-filter: saturate(180%) blur(12px); border-bottom: 1px solid var(--kl-border); z-index: 100; }
+.kl-brand { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 18px; color: var(--kl-text); letter-spacing: -.02em; white-space: nowrap; }
+.kl-brand:hover { text-decoration: none; }
+.kl-brand .leaf { font-size: 20px; }
+.kl-brand .tag { font-size: 11px; font-weight: 600; color: var(--kl-accent-text); background: var(--kl-accent-soft); padding: 2px 7px; border-radius: 20px; }
+.kl-header-spacer { flex: 1; }
+.kl-search-wrap { position: relative; width: min(340px, 38vw); }
+.kl-search { width: 100%; height: 38px; padding: 0 36px; background: var(--kl-bg-subtle); border: 1px solid var(--kl-border); border-radius: var(--kl-radius); color: var(--kl-text); font-family: inherit; font-size: 14px; transition: border-color .15s, box-shadow .15s; }
+.kl-search:focus { outline: none; border-color: var(--kl-accent); box-shadow: 0 0 0 3px var(--kl-accent-soft); background: var(--kl-bg); }
+.kl-search::placeholder { color: var(--kl-text-faint); }
+.kl-search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--kl-text-faint); pointer-events: none; display: flex; }
+.kl-search-kbd { position: absolute; right: 9px; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--kl-text-faint); border: 1px solid var(--kl-border-strong); border-radius: 5px; padding: 1px 6px; pointer-events: none; }
+.kl-search-results { position: absolute; top: 46px; left: 0; right: 0; max-height: 60vh; overflow-y: auto; background: var(--kl-bg-elevated); border: 1px solid var(--kl-border); border-radius: var(--kl-radius); box-shadow: var(--kl-shadow-lg); padding: 6px; display: none; z-index: 120; }
+.kl-search-results.open { display: block; }
+.kl-result { display: block; padding: 9px 11px; border-radius: 7px; color: var(--kl-text); cursor: pointer; }
+.kl-result:hover, .kl-result.active { background: var(--kl-accent-soft); text-decoration: none; }
+.kl-result .r-title { font-weight: 600; font-size: 14px; }
+.kl-result .r-crumb { font-size: 12px; color: var(--kl-text-faint); margin-bottom: 2px; }
+.kl-result .r-snippet { font-size: 12.5px; color: var(--kl-text-muted); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.kl-result mark { background: var(--kl-accent-soft); color: var(--kl-accent-text); border-radius: 3px; padding: 0 1px; }
+.kl-search-empty { padding: 18px 12px; text-align: center; color: var(--kl-text-faint); font-size: 13px; }
+.kl-iconbtn { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: var(--kl-radius); background: transparent; border: 1px solid transparent; color: var(--kl-text-muted); cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
+.kl-iconbtn:hover { background: var(--kl-bg-subtle); color: var(--kl-text); border-color: var(--kl-border); }
+
+/* ---------- Language dropdown ---------- */
+.kl-lang { position: relative; }
+.kl-lang-btn { display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 11px; background: transparent; border: 1px solid var(--kl-border); border-radius: var(--kl-radius); color: var(--kl-text); cursor: pointer; font-family: inherit; font-size: 13.5px; font-weight: 500; transition: background .15s, border-color .15s; }
+.kl-lang-btn:hover { background: var(--kl-bg-subtle); border-color: var(--kl-border-strong); }
+.kl-lang-btn .chev { transition: transform .18s; color: var(--kl-text-faint); }
+.kl-lang.open .kl-lang-btn .chev { transform: rotate(180deg); }
+.kl-lang-menu { position: absolute; top: 46px; right: 0; min-width: 188px; background: var(--kl-bg-elevated); border: 1px solid var(--kl-border); border-radius: var(--kl-radius); box-shadow: var(--kl-shadow-lg); padding: 6px; z-index: 120; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .16s, transform .16s, visibility .16s; }
+.kl-lang.open .kl-lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.kl-lang-opt { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 11px; border-radius: 7px; cursor: pointer; color: var(--kl-text); font-size: 14px; }
+.kl-lang-opt:hover { background: var(--kl-bg-subtle); }
+.kl-lang-opt .native { font-weight: 500; }
+.kl-lang-opt .en-name { font-size: 11.5px; color: var(--kl-text-faint); }
+.kl-lang-opt .check { color: var(--kl-accent); opacity: 0; display: flex; }
+.kl-lang-opt.active .check { opacity: 1; }
+.kl-lang-opt.active { background: var(--kl-accent-soft); }
+
+/* ---------- Layout ---------- */
+.kl-layout { display: flex; padding-top: var(--kl-header-h); }
+.kl-sidebar { position: fixed; top: var(--kl-header-h); bottom: 0; left: 0; width: var(--kl-sidebar-w); overflow-y: auto; overscroll-behavior: contain; border-right: 1px solid var(--kl-border); background: var(--kl-bg); padding: 22px 16px 60px; }
+.kl-main { flex: 1; min-width: 0; margin-left: var(--kl-sidebar-w); display: flex; justify-content: center; padding: 40px 48px 120px; }
+.kl-article-wrap { width: 100%; max-width: var(--kl-content-max); }
+.kl-toc { position: fixed; top: var(--kl-header-h); right: 0; width: var(--kl-toc-w); height: calc(100vh - var(--kl-header-h)); overflow-y: auto; padding: 40px 24px 60px; }
+@media (min-width: 1081px) { .kl-main { margin-right: var(--kl-toc-w); } }
+
+/* ---------- Sidebar nav ---------- */
+.kl-nav-group { margin-bottom: 22px; }
+.kl-nav-group-label { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--kl-text-faint); padding: 0 12px 8px; }
+.kl-nav-link { display: flex; align-items: center; gap: 9px; padding: 7px 12px; border-radius: 8px; margin: 1px 0; color: var(--kl-text-muted); font-size: 14px; font-weight: 500; cursor: pointer; transition: background .13s, color .13s; }
+.kl-nav-link:hover { background: var(--kl-bg-subtle); color: var(--kl-text); text-decoration: none; }
+.kl-nav-link.active { background: var(--kl-accent-soft); color: var(--kl-accent-text); font-weight: 600; }
+.kl-nav-link .ico { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
+
+/* ---------- Content / typography ---------- */
+.kl-breadcrumb { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--kl-text-faint); margin-bottom: 18px; flex-wrap: wrap; }
+.kl-breadcrumb a { color: var(--kl-text-muted); }
+.kl-breadcrumb .sep { opacity: .6; }
+.kl-article h1 { font-size: 34px; font-weight: 800; letter-spacing: -.025em; margin: 0 0 14px; line-height: 1.2; }
+.kl-article h2 { font-size: 23px; font-weight: 700; letter-spacing: -.015em; margin: 44px 0 14px; line-height: 1.3; padding-top: 8px; scroll-margin-top: calc(var(--kl-header-h) + 24px); }
+.kl-article h3 { font-size: 17.5px; font-weight: 700; margin: 28px 0 10px; }
+.kl-article p { margin: 0 0 16px; }
+.kl-lead { font-size: 18px; line-height: 1.6; color: var(--kl-text-muted); margin-bottom: 28px !important; }
+.kl-article ul, .kl-article ol { margin: 0 0 16px; padding-left: 22px; }
+.kl-article li { margin: 7px 0; }
+.kl-article strong { color: var(--kl-text); font-weight: 700; }
+.kl-article code { background: var(--kl-code-bg); color: var(--kl-code-text); font-size: .88em; padding: 2px 6px; border-radius: 6px; font-family: var(--kl-mono); }
+.kl-article hr { border: none; border-top: 1px solid var(--kl-border); margin: 40px 0; }
+.kl-article a { font-weight: 500; }
+.kl-article blockquote { margin: 22px 0; padding: 4px 18px; border-left: 3px solid var(--kl-accent); color: var(--kl-text-muted); font-size: 16px; }
+.kl-img-ph { display: flex; align-items: center; justify-content: center; gap: 8px; height: 180px; border: 1px dashed var(--kl-border-strong); border-radius: var(--kl-radius); color: var(--kl-text-faint); font-size: 15px; background: var(--kl-bg-subtle); margin: 18px 0; }
+
+/* Hints / callouts */
+.kl-hint { display: flex; gap: 12px; padding: 14px 16px; border-radius: var(--kl-radius); margin: 20px 0; font-size: 14.5px; border: 1px solid transparent; }
+.kl-hint .h-ic { flex-shrink: 0; font-size: 17px; line-height: 1.5; }
+.kl-hint .h-body { color: var(--kl-text); }
+.kl-hint.info { background: var(--kl-info-bg); border-color: color-mix(in srgb, var(--kl-info) 26%, transparent); }
+.kl-hint.success { background: var(--kl-success-bg); border-color: color-mix(in srgb, var(--kl-success) 26%, transparent); }
+.kl-hint.warning { background: var(--kl-warning-bg); border-color: color-mix(in srgb, var(--kl-warning) 30%, transparent); }
+.kl-hint.danger { background: var(--kl-danger-bg); border-color: color-mix(in srgb, var(--kl-danger) 28%, transparent); }
+.kl-hint.accent { background: var(--kl-accent-soft); border-color: color-mix(in srgb, var(--kl-accent) 30%, transparent); }
+
+/* Placeholders */
+.kl-tbd { background: #fce7f3; color: #be185d; font-weight: 600; padding: 1px 7px; border-radius: 5px; font-size: .92em; border: 1px solid #f9a8d4; }
+[data-theme="dark"] .kl-tbd { background: rgba(236,72,153,.20); color: #f9a8d4; border-color: rgba(236,72,153,.45); }
+.kl-soon { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; text-align: center; padding: 34px 24px; border: 1.5px dashed var(--kl-border-strong); border-radius: var(--kl-radius); background: var(--kl-bg-subtle); margin: 22px 0; }
+.kl-soon-badge { font-size: 18px; font-weight: 800; color: var(--kl-text); letter-spacing: -.01em; }
+.kl-soon-sub { font-size: 13.5px; color: var(--kl-text-faint); }
+
+/* Timeline (roadmap) */
+.kl-timeline { position: relative; margin: 26px 0 8px; padding-left: 6px; }
+.kl-tl-item { position: relative; padding: 0 0 28px 34px; border-left: 2px solid var(--kl-border); }
+.kl-tl-item:last-child { border-left-color: transparent; padding-bottom: 4px; }
+.kl-tl-dot { position: absolute; left: -9px; top: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--kl-bg); border: 2px solid var(--kl-accent); }
+.kl-tl-item.future .kl-tl-dot { border-color: var(--kl-border-strong); }
+.kl-tl-phase { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--kl-accent-text); margin-bottom: 3px; }
+.kl-tl-title { font-size: 18px !important; font-weight: 700; margin: 0 0 6px !important; padding-top: 0 !important; }
+.kl-tl-body { font-size: 14.5px; color: var(--kl-text-muted); }
+
+/* Code block */
+.kl-code { border: 1px solid var(--kl-border); border-radius: var(--kl-radius); overflow: hidden; margin: 18px 0; background: var(--kl-code-bg); }
+.kl-code-head { display: flex; align-items: center; justify-content: space-between; padding: 8px 14px; border-bottom: 1px solid var(--kl-border); font-size: 12.5px; color: var(--kl-text-muted); font-family: var(--kl-mono); }
+.kl-copy { background: transparent; border: 1px solid var(--kl-border-strong); color: var(--kl-text-muted); border-radius: 6px; padding: 3px 10px; font-size: 12px; cursor: pointer; font-family: var(--kl-font); transition: background .13s, color .13s; }
+.kl-copy:hover { background: var(--kl-bg); color: var(--kl-text); }
+.kl-code pre { margin: 0; padding: 14px 16px; overflow-x: auto; }
+.kl-code code { background: none; color: var(--kl-text); padding: 0; font-size: 13.5px; font-family: var(--kl-mono); line-height: 1.7; }
+
+/* Tables */
+.kl-table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 14px; }
+.kl-table th, .kl-table td { text-align: left; padding: 10px 14px; border: 1px solid var(--kl-border); }
+.kl-table th { background: var(--kl-bg-subtle); font-weight: 700; }
+
+/* Tabs */
+.kl-tabs { margin: 18px 0; }
+.kl-tab-heads { display: flex; gap: 4px; border-bottom: 1px solid var(--kl-border); }
+.kl-tab-head { background: transparent; border: none; border-bottom: 2px solid transparent; padding: 9px 14px; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--kl-text-muted); cursor: pointer; margin-bottom: -1px; }
+.kl-tab-head.active { color: var(--kl-accent-text); border-bottom-color: var(--kl-accent); }
+.kl-tab-pane { display: none; padding-top: 6px; }
+.kl-tab-pane.active { display: block; }
+
+/* Cards */
+.kl-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 22px 0; }
+.kl-card { padding: 20px; border: 1px solid var(--kl-border); border-radius: var(--kl-radius); background: var(--kl-bg-elevated); transition: border-color .15s, transform .15s, box-shadow .15s; }
+.kl-card:hover { border-color: var(--kl-accent); transform: translateY(-2px); box-shadow: var(--kl-shadow); }
+.kl-card .ic { font-size: 24px; margin-bottom: 10px; }
+.kl-card .ct { font-weight: 700; font-size: 16px; margin-bottom: 5px; }
+.kl-card .cd { font-size: 13.5px; color: var(--kl-text-muted); }
+
+/* Accordion / expandable */
+.kl-accordion { border: 1px solid var(--kl-border); border-radius: var(--kl-radius); margin: 12px 0; overflow: hidden; }
+.kl-acc-head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; background: transparent; border: none; font-family: inherit; font-size: 15px; font-weight: 600; color: var(--kl-text); cursor: pointer; text-align: left; }
+.kl-acc-head:hover { background: var(--kl-bg-subtle); }
+.kl-acc-ic { color: var(--kl-text-faint); font-size: 18px; transition: transform .2s; flex-shrink: 0; }
+.kl-accordion.open .kl-acc-ic { transform: rotate(45deg); }
+.kl-acc-body { display: none; padding: 0 16px 14px; color: var(--kl-text-muted); font-size: 14.5px; }
+.kl-accordion.open .kl-acc-body { display: block; }
+.kl-acc-body p { margin: 0; }
+
+/* Helpful footer */
+.kl-helpful { display: flex; align-items: center; gap: 12px; margin-top: 56px; padding: 18px 0; border-top: 1px solid var(--kl-border); font-size: 14px; color: var(--kl-text-muted); }
+.kl-helpful-btn { background: transparent; border: 1px solid var(--kl-border-strong); color: var(--kl-text-muted); border-radius: 8px; padding: 6px 16px; font-family: inherit; font-size: 13.5px; cursor: pointer; transition: background .13s, border-color .13s, color .13s; }
+.kl-helpful-btn:hover { border-color: var(--kl-accent); color: var(--kl-accent-text); background: var(--kl-accent-soft); }
+.kl-helpful .thanks { color: var(--kl-accent-text); font-weight: 600; }
+.kl-meta { font-size: 13px; color: var(--kl-text-faint); margin-top: 10px; }
+
+/* Pager */
+.kl-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
+.kl-pager-btn { display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border: 1px solid var(--kl-border); border-radius: var(--kl-radius); cursor: pointer; transition: border-color .15s, background .15s; }
+.kl-pager-btn:hover { border-color: var(--kl-accent); background: var(--kl-bg-subtle); text-decoration: none; }
+.kl-pager-btn.next { text-align: right; }
+.kl-pager-dir { font-size: 12px; color: var(--kl-text-faint); font-weight: 600; }
+.kl-pager-title { font-size: 15px; font-weight: 600; color: var(--kl-text); }
+.kl-pager-btn.empty { visibility: hidden; }
+
+/* Right TOC */
+.kl-toc-title { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--kl-text-faint); margin-bottom: 12px; }
+.kl-toc-link { display: block; padding: 5px 0 5px 12px; border-left: 2px solid var(--kl-border); color: var(--kl-text-muted); font-size: 13px; cursor: pointer; transition: color .13s, border-color .13s; }
+.kl-toc-link:hover { color: var(--kl-text); text-decoration: none; }
+.kl-toc-link.active { color: var(--kl-accent-text); border-left-color: var(--kl-accent); font-weight: 600; }
+
+/* Home / hero */
+.kl-hero { padding: 20px 0 8px; }
+.kl-hero .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; color: var(--kl-accent-text); background: var(--kl-accent-soft); padding: 5px 14px; border-radius: 20px; margin-bottom: 22px; }
+.kl-hero .leaf-xl { font-size: 60px; line-height: 1; margin-bottom: 16px; }
+.kl-hero h1 { font-size: 50px; font-weight: 800; letter-spacing: -.03em; line-height: 1.06; margin: 0 0 18px; }
+.kl-hero .grad { background: linear-gradient(120deg, var(--kl-accent), #5ad1a0); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.kl-hero .lead { font-size: 19px; color: var(--kl-text-muted); max-width: 600px; margin: 0 0 30px; line-height: 1.6; }
+.kl-hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.kl-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: var(--kl-radius); font-weight: 600; font-size: 15px; cursor: pointer; transition: transform .15s, background .15s, border-color .15s; border: 1px solid transparent; }
+.kl-btn:hover { text-decoration: none; transform: translateY(-1px); }
+.kl-btn-primary { background: #15803d; color: #fff; }
+.kl-btn-primary:hover { background: #126b33; }
+.kl-btn-ghost { background: transparent; border-color: var(--kl-border-strong); color: var(--kl-text); }
+.kl-btn-ghost:hover { border-color: var(--kl-accent); background: var(--kl-bg-subtle); }
+.kl-byline { font-size: 14px; color: var(--kl-text-faint); margin-top: 18px; }
+.kl-home-divider { margin: 40px 0; border: none; border-top: 1px solid var(--kl-border); }
+
+/* Mobile */
+.kl-menu-toggle { display: none; }
+.kl-scrim { display: none; }
+@media (max-width: 1080px) { .kl-toc { display: none; } .kl-main { margin-right: 0; } }
+@media (max-width: 860px) {
+  :root { --kl-sidebar-w: 280px; }
+  .kl-menu-toggle { display: inline-flex; }
+  .kl-sidebar { transform: translateX(-100%); transition: transform .25s ease; z-index: 95; box-shadow: var(--kl-shadow-lg); }
+  body.nav-open .kl-sidebar { transform: translateX(0); }
+  body.nav-open .kl-scrim { display: block; position: fixed; inset: var(--kl-header-h) 0 0 0; background: rgba(0,0,0,.4); z-index: 90; }
+  .kl-main { margin-left: 0; padding: 28px 22px 100px; }
+  .kl-search-wrap { display: none; }
+  .kl-brand .tag { display: none; }
+  .kl-hero h1 { font-size: 38px; }
+  .kl-article h1 { font-size: 28px; }
+}
+@media (max-width: 560px) { .kl-lang-btn .lang-label { display: none; } .kl-pager { grid-template-columns: 1fr; } }
+.kl-sidebar::-webkit-scrollbar, .kl-toc::-webkit-scrollbar, .kl-search-results::-webkit-scrollbar { width: 8px; }
+.kl-sidebar::-webkit-scrollbar-thumb, .kl-toc::-webkit-scrollbar-thumb { background: var(--kl-border-strong); border-radius: 8px; }
+.kl-sidebar::-webkit-scrollbar-track, .kl-toc::-webkit-scrollbar-track { background: transparent; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+</style>
+<style>
+/* ============================================================
+   KLOVER editorial redesign (override layer)
+   Ink on paper, hairline rules, sharp corners, serif display
+   ============================================================ */
+:root {
+  --kl-bg: #faf9f5;
+  --kl-bg-subtle: #f1efe8;
+  --kl-bg-elevated: #ffffff;
+  --kl-text: #1a1814;
+  --kl-text-muted: #57534a;
+  --kl-text-faint: #8b8678;
+  --kl-border: #e4e1d7;
+  --kl-border-strong: #cdc9bc;
+  --kl-accent: #1f5236;
+  --kl-accent-hover: #163d28;
+  --kl-accent-soft: rgba(31,82,54,0.07);
+  --kl-accent-text: #1f5236;
+  --kl-code-bg: #f1efe8;
+  --kl-code-text: #8a4b66;
+  --kl-info: #355e9b;
+  --kl-warning: #9a6a1a;
+  --kl-danger: #9c3a30;
+  --kl-pink: #a8336a;
+  --kl-pink-bg: rgba(168,51,106,0.07);
+  --kl-pink-border: rgba(168,51,106,0.35);
+  --kl-shadow: none;
+  --kl-shadow-lg: 0 14px 44px rgba(26,24,20,0.13);
+  --kl-radius: 0px;
+  --kl-header-h: 64px;
+  --kl-content-max: 720px;
+  --kl-font: 'Inter', 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --kl-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+}
+[data-theme="dark"] {
+  --kl-bg: #14130f;
+  --kl-bg-subtle: #1c1a15;
+  --kl-bg-elevated: #1c1a15;
+  --kl-text: #ece9df;
+  --kl-text-muted: #a7a294;
+  --kl-text-faint: #7b7567;
+  --kl-border: #2b2922;
+  --kl-border-strong: #3a372d;
+  --kl-accent: #7fb394;
+  --kl-accent-hover: #97c7ab;
+  --kl-accent-soft: rgba(127,179,148,0.13);
+  --kl-accent-text: #8fc0a3;
+  --kl-code-bg: #211f19;
+  --kl-code-text: #d89bb6;
+  --kl-info: #7ca0da;
+  --kl-warning: #d2a24e;
+  --kl-danger: #d98a80;
+  --kl-pink: #e69bbc;
+  --kl-pink-bg: rgba(230,155,188,0.13);
+  --kl-pink-border: rgba(230,155,188,0.40);
+  --kl-shadow: none;
+  --kl-shadow-lg: 0 14px 44px rgba(0,0,0,0.55);
+}
+body { font-family: var(--kl-font); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+::selection { background: var(--kl-accent); color: var(--kl-bg); }
+
+/* ---------- Header ---------- */
+.kl-header { background: var(--kl-bg); backdrop-filter: none; border-bottom: 1px solid var(--kl-border); padding: 0 24px; }
+.kl-brand { gap: 9px; font-weight: 600; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; }
+.kl-brand .mark { display: inline-flex; color: var(--kl-accent); }
+.kl-brand .tag { background: none; padding: 0 0 0 9px; margin-left: 1px; border-radius: 0; border-left: 1px solid var(--kl-border-strong); color: var(--kl-text-faint); font-weight: 500; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; }
+.kl-iconbtn { border-radius: 0; }
+.kl-iconbtn:hover { background: var(--kl-bg-subtle); border-color: var(--kl-border); }
+
+/* ---------- Search ---------- */
+.kl-search { border-radius: 0; background: var(--kl-bg-subtle); border-color: var(--kl-border); font-size: 13.5px; }
+.kl-search:focus { background: var(--kl-bg); border-color: var(--kl-accent); box-shadow: none; }
+.kl-search-kbd { border-radius: 2px; border-color: var(--kl-border-strong); }
+.kl-search-results { border-radius: 0; border-color: var(--kl-border-strong); box-shadow: var(--kl-shadow-lg); padding: 4px; }
+.kl-result { border-radius: 0; }
+.kl-result:hover, .kl-result.active { background: var(--kl-bg-subtle); }
+.kl-result .r-title { font-weight: 600; }
+.kl-result mark { background: transparent; color: var(--kl-accent-text); font-weight: 700; }
+
+/* ---------- Language switcher ---------- */
+.kl-lang-btn { border-radius: 0; font-size: 13px; }
+.kl-lang-btn:hover { background: var(--kl-bg-subtle); }
+.kl-lang-menu { border-radius: 0; border-color: var(--kl-border-strong); box-shadow: var(--kl-shadow-lg); padding: 4px; }
+.kl-lang-opt { border-radius: 0; }
+.kl-lang-opt:hover { background: var(--kl-bg-subtle); }
+.kl-lang-opt.active { background: var(--kl-accent-soft); }
+.kl-lang-opt .check { color: var(--kl-accent); }
+
+/* ---------- Sidebar nav ---------- */
+.kl-sidebar { border-right: 1px solid var(--kl-border); padding: 28px 14px 60px; }
+.kl-nav-group { margin-bottom: 26px; }
+.kl-nav-group-label { font-size: 10.5px; letter-spacing: 0.16em; color: var(--kl-text-faint); padding: 0 14px 10px; }
+.kl-nav-link { border-radius: 0; border-left: 2px solid transparent; padding: 6px 12px 6px 14px; margin: 0; font-size: 14px; font-weight: 450; color: var(--kl-text-muted); gap: 0; }
+.kl-nav-link:hover { background: var(--kl-bg-subtle); color: var(--kl-text); }
+.kl-nav-link.active { background: transparent; border-left-color: var(--kl-accent); color: var(--kl-text); font-weight: 600; }
+.kl-nav-link .ico { min-width: 26px; width: auto; font-size: 11px; font-weight: 500; text-align: left; color: var(--kl-text-faint); font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+.kl-nav-link.active .ico { color: var(--kl-accent); }
+
+/* ---------- Article typography ---------- */
+.kl-main { padding: 56px 64px 140px; }
+.kl-breadcrumb { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--kl-text-faint); margin-bottom: 26px; }
+.kl-breadcrumb a { color: var(--kl-text-faint); }
+.kl-breadcrumb a:hover { color: var(--kl-text); text-decoration: none; }
+.kl-article h1 { font-family: var(--kl-serif); font-weight: 400; font-size: 44px; letter-spacing: -0.015em; line-height: 1.1; margin: 0 0 22px; }
+.kl-article h2 { font-family: var(--kl-font); font-size: 22px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; margin: 60px 0 18px; padding-top: 28px; border-top: 1px solid var(--kl-border); }
+.kl-article h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.01em; margin: 32px 0 10px; }
+.kl-article p { font-size: 16px; line-height: 1.78; color: var(--kl-text); margin: 0 0 18px; }
+.kl-lead { font-size: 20px !important; line-height: 1.62; color: var(--kl-text-muted); font-weight: 400; margin-bottom: 36px !important; }
+.kl-article ul, .kl-article ol { padding-left: 20px; }
+.kl-article li { line-height: 1.72; margin: 8px 0; }
+.kl-article li::marker { color: var(--kl-text-faint); }
+.kl-article strong { font-weight: 600; }
+.kl-article a { color: var(--kl-accent-text); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: var(--kl-border-strong); font-weight: 500; }
+.kl-article a:hover { text-decoration-color: var(--kl-accent); }
+.kl-article code { background: var(--kl-code-bg); color: var(--kl-code-text); border-radius: 2px; border: 1px solid var(--kl-border); }
+.kl-article blockquote { font-family: var(--kl-serif); font-style: italic; font-size: 20px; line-height: 1.5; color: var(--kl-text-muted); border-left: 2px solid var(--kl-accent); padding: 2px 0 2px 22px; margin: 26px 0; }
+.kl-article hr { border-top: 1px solid var(--kl-border); }
+
+/* ---------- Definition list (glossary): hairline rows, no box, no fill ---------- */
+.kl-dl { border: none; border-top: 1px solid var(--kl-border-strong); border-radius: 0; overflow: visible; }
+.kl-dl .row { border-top: none; border-bottom: 1px solid var(--kl-border); grid-template-columns: 220px 1fr; }
+.kl-dl dt { background: none; font-weight: 600; font-size: 14px; padding: 17px 24px 17px 0; }
+.kl-dl dd { background: none; font-size: 14.5px; line-height: 1.65; color: var(--kl-text-muted); padding: 17px 0; }
+@media (max-width: 640px) { .kl-dl .row { grid-template-columns: 1fr; } .kl-dl dd { padding-top: 0; } }
+
+/* ---------- Notes (editorial: kicker label in side column, hairline rule, no box) ---------- */
+.kl-hint,
+.kl-hint.info, .kl-hint.success, .kl-hint.accent, .kl-hint.warning, .kl-hint.danger {
+  display: grid; grid-template-columns: 128px 1fr; column-gap: 28px; align-items: baseline;
+  background: none; border: none; border-top: 1px solid var(--kl-border-strong);
+  border-radius: 0; padding: 18px 0 0; margin: 36px 0; gap: 0; column-gap: 28px;
+}
+.kl-hint .h-ic { display: none; }
+.kl-hint::before { content: "Note"; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--kl-text-muted); white-space: nowrap; }
+.kl-hint.accent::before { content: "Important"; }
+.kl-hint.warning::before { content: "Disclaimer"; }
+.kl-hint.danger::before { content: "Warning"; }
+.kl-hint .h-body { color: var(--kl-text); font-size: 15.5px; line-height: 1.72; }
+.kl-hint.warning .h-body { color: var(--kl-text-muted); font-size: 14px; line-height: 1.72; }
+@media (max-width: 720px) { .kl-hint, .kl-hint.info, .kl-hint.success, .kl-hint.accent, .kl-hint.warning, .kl-hint.danger { grid-template-columns: 1fr; row-gap: 10px; } }
+
+/* ---------- Cards (hairline, sharp, numbered) ---------- */
+.kl-cards { gap: 0; border-top: 1px solid var(--kl-border); margin: 28px 0; }
+.kl-card { border: none; border-bottom: 1px solid var(--kl-border); border-radius: 0; background: none; padding: 22px 24px 22px 0; transition: none; }
+.kl-card:hover { border-color: var(--kl-border); border-bottom-color: var(--kl-border); transform: none; box-shadow: none; }
+.kl-card .ic { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: var(--kl-text-faint); margin-bottom: 12px; font-variant-numeric: tabular-nums; }
+.kl-card .ct { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+.kl-card .cd { font-size: 14px; line-height: 1.6; color: var(--kl-text-muted); }
+@media (min-width: 720px) {
+  .kl-cards { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 40px; }
+  .kl-card { padding-right: 0; }
+}
+
+/* ---------- Placeholders ---------- */
+.kl-tbd { background: var(--kl-pink-bg); color: var(--kl-pink); border: none; border-bottom: 1px solid var(--kl-pink-border); border-radius: 0; padding: 0 3px 1px; font-weight: 600; font-size: 0.95em; }
+.kl-soon { border: none; border-top: 1px solid var(--kl-border-strong); border-bottom: 1px solid var(--kl-border-strong); border-radius: 0; background: none; padding: 40px 24px; gap: 9px; margin: 28px 0; }
+.kl-soon-badge { font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--kl-text-muted); }
+.kl-soon-sub { font-size: 13px; color: var(--kl-text-faint); }
+
+/* ---------- Timeline (roadmap) ---------- */
+.kl-timeline { padding-left: 4px; margin-top: 32px; }
+.kl-tl-item { border-left: 1px solid var(--kl-border); padding: 0 0 32px 34px; }
+.kl-tl-dot { width: 9px; height: 9px; border-radius: 0; background: var(--kl-accent); border: none; left: -5px; top: 5px; }
+.kl-tl-item.future .kl-tl-dot { background: var(--kl-bg); border: 1px solid var(--kl-border-strong); }
+.kl-tl-phase { font-size: 11px; letter-spacing: 0.16em; color: var(--kl-text-faint); margin-bottom: 4px; }
+.kl-tl-title { font-size: 19px !important; font-weight: 700; border-top: none !important; padding-top: 0 !important; margin: 0 0 7px !important; }
+.kl-tl-body { font-size: 15px; line-height: 1.68; }
+
+/* ---------- Tables ---------- */
+.kl-table th, .kl-table td { border-color: var(--kl-border); }
+.kl-table th { background: var(--kl-bg-subtle); font-weight: 600; }
+
+/* ---------- Helpful footer + meta ---------- */
+.kl-helpful { border-top: 1px solid var(--kl-border); margin-top: 64px; font-size: 13px; letter-spacing: 0.01em; }
+.kl-helpful-btn { border-radius: 0; border-color: var(--kl-border-strong); }
+.kl-helpful-btn:hover { border-color: var(--kl-accent); color: var(--kl-accent-text); background: transparent; }
+.kl-helpful .thanks { color: var(--kl-accent-text); }
+.kl-meta { font-size: 12px; letter-spacing: 0.04em; }
+
+/* ---------- Pager ---------- */
+.kl-pager { border-top: 1px solid var(--kl-border); padding-top: 28px; margin-top: 30px; gap: 24px; }
+.kl-pager-btn { border: none; border-radius: 0; padding: 4px 0; }
+.kl-pager-btn:hover { background: none; border: none; }
+.kl-pager-btn:hover .kl-pager-title { color: var(--kl-accent-text); }
+.kl-pager-dir { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+.kl-pager-title { font-size: 16px; font-weight: 500; }
+
+/* ---------- Right TOC ---------- */
+.kl-toc { padding-top: 56px; }
+.kl-toc-title { font-size: 10.5px; letter-spacing: 0.16em; color: var(--kl-text-faint); }
+.kl-toc-link { border-left: 1px solid var(--kl-border); font-size: 12.5px; padding: 6px 0 6px 14px; }
+.kl-toc-link.active { border-left-color: var(--kl-accent); color: var(--kl-accent-text); }
+
+/* ---------- Hero ---------- */
+.kl-hero { padding: 12px 0 4px; }
+.kl-hero .eyebrow { display: inline-flex; align-items: center; gap: 12px; background: none; padding: 0; border-radius: 0; color: var(--kl-text-muted); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 30px; }
+.kl-hero .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--kl-border-strong); display: inline-block; }
+.kl-hero h1 { font-family: var(--kl-serif); font-weight: 400; font-size: clamp(48px, 7.5vw, 84px); letter-spacing: -0.025em; line-height: 1.0; margin: 0 0 26px; }
+.kl-hero .grad { background: none; -webkit-text-fill-color: var(--kl-accent); color: var(--kl-accent); font-style: italic; }
+.kl-hero .lead { font-size: 20px; line-height: 1.62; color: var(--kl-text-muted); max-width: 560px; margin-bottom: 34px; }
+.kl-hero-cta { gap: 14px; }
+.kl-btn { border-radius: 0; font-size: 14px; font-weight: 500; letter-spacing: 0.02em; padding: 13px 26px; }
+.kl-btn:hover { transform: none; }
+.kl-article .kl-btn, .kl-article .kl-btn:hover { text-decoration: none; }
+.kl-btn-primary { background: var(--kl-text); color: var(--kl-bg); }
+.kl-btn-primary:hover { background: var(--kl-accent); color: #fff; }
+.kl-btn-ghost { border-color: var(--kl-border-strong); color: var(--kl-text); }
+.kl-btn-ghost:hover { border-color: var(--kl-accent); color: var(--kl-accent-text); background: none; }
+.kl-byline { font-size: 13px; letter-spacing: 0.02em; color: var(--kl-text-faint); margin-top: 22px; }
+.kl-home-divider { border-top: 1px solid var(--kl-border); margin: 48px 0; }
+
+/* ---------- Coming soon modal ---------- */
+.kl-modal { position: fixed; inset: 0; z-index: 200; display: none; }
+.kl-modal.open { display: block; }
+.kl-modal-scrim { position: absolute; inset: 0; background: rgba(20,19,15,0.45); }
+[data-theme="dark"] .kl-modal-scrim { background: rgba(0,0,0,0.62); }
+.kl-modal-card { position: relative; width: min(420px, calc(100vw - 40px)); margin: 16vh auto 0; background: var(--kl-bg-elevated); border: 1px solid var(--kl-border-strong); box-shadow: var(--kl-shadow-lg); padding: 44px 40px 34px; text-align: center; }
+.kl-modal.open .kl-modal-card { animation: klmodalin 0.22s ease; }
+@keyframes klmodalin { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.kl-modal-lang { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--kl-text-faint); margin-bottom: 18px; }
+.kl-modal-title { font-family: var(--kl-serif); font-weight: 400; font-size: 34px; line-height: 1.12; letter-spacing: -0.01em; color: var(--kl-text); margin-bottom: 12px; }
+.kl-modal-sub { font-size: 15px; line-height: 1.62; color: var(--kl-text-muted); margin-bottom: 28px; }
+.kl-modal-close { background: var(--kl-text); color: var(--kl-bg); border: none; border-radius: 0; padding: 11px 30px; font-family: var(--kl-font); font-size: 13.5px; font-weight: 500; letter-spacing: 0.02em; cursor: pointer; }
+.kl-modal-close:hover { background: var(--kl-accent); color: #fff; }
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 860px) {
+  .kl-main { padding: 32px 24px 100px; }
+  .kl-article h1 { font-size: 34px; }
+}
+</style>
+</head>
+<body>
+<!-- ===================== HEADER ===================== -->
+<header class="kl-header">
+  <button class="kl-iconbtn kl-menu-toggle" id="menuToggle" aria-label="Menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <a class="kl-brand" data-nav="home" href="#home"><span class="mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="7.5" r="3.6"/><circle cx="7.5" cy="12" r="3.6"/><circle cx="16.5" cy="12" r="3.6"/><circle cx="12" cy="16.5" r="3.6"/></svg></span><span>KLOVER</span><span class="tag" data-i18n="ui.docs">Docs</span></a>
+  <div class="kl-header-spacer"></div>
+  <div class="kl-search-wrap">
+    <span class="kl-search-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+    <input type="text" class="kl-search" id="searchInput" autocomplete="off" aria-label="Search" />
+    <span class="kl-search-kbd">/</span>
+    <div class="kl-search-results" id="searchResults"></div>
+  </div>
+  <div class="kl-lang" id="langDropdown">
+    <button class="kl-lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span class="lang-label" id="langCurrent">English</span>
+      <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="kl-lang-menu" id="langMenu" role="menu"></div>
+  </div>
+  <button class="kl-iconbtn" id="themeToggle" aria-label="Toggle theme">
+    <svg id="iconSun" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg id="iconMoon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</header>
+
+<!-- ===================== LAYOUT ===================== -->
+<div class="kl-layout">
+  <aside class="kl-sidebar" id="sidebar"><nav id="nav"></nav></aside>
+  <div class="kl-scrim" id="scrim"></div>
+  <main class="kl-main">
+    <div class="kl-article-wrap">
+      <div class="kl-breadcrumb" id="breadcrumb"></div>
+      <article class="kl-article" id="content"></article>
+      <div id="pageFooter"></div>
+      <nav class="kl-pager" id="pager"></nav>
+    </div>
+  </main>
+  <aside class="kl-toc">
+    <div class="kl-toc-title" data-i18n="ui.onThisPage">On this page</div>
+    <div id="toc"></div>
+  </aside>
+</div>
+
+<script>
+/* ============================================================
+   KLOVER i18n data and application engine
+   ============================================================ */
+const LANGS = [
+  { code: 'en', native: 'English',  en: 'English'  },
+  { code: 'zh', native: '中文',      en: 'Chinese'  },
+  { code: 'ko', native: '한국어',    en: 'Korean'   },
+  { code: 'ja', native: '日本語',    en: 'Japanese' },
+  { code: 'fr', native: 'Français',  en: 'French'   },
+  { code: 'es', native: 'Español',   en: 'Spanish'  },
+];
+/* Languages other than English and Korean are not yet translated.
+   Selecting one shows a localized "Coming soon" modal instead of switching. */
+const SUPPORTED_LANGS = ['en', 'ko'];
+const COMING_SOON = {
+  zh: { native: '中文', title: '即将推出', sub: '中文版文档正在准备中，敬请期待。', close: '关闭' },
+  ja: { native: '日本語', title: '近日公開', sub: '日本語版のドキュメントは現在準備中です。', close: '閉じる' },
+  fr: { native: 'Français', title: 'Bientôt disponible', sub: 'La documentation en français arrive bientôt.', close: 'Fermer' },
+  es: { native: 'Español', title: 'Próximamente', sub: 'La documentación en español estará disponible muy pronto.', close: 'Cerrar' },
+};
+const NAV_GROUPS = [
+  { label: null,                  items: ['home'] },
+  { label: 'ui.groupIntro',       items: ['sec1', 'sec2'] },
+  { label: 'ui.groupEcosystem',   items: ['sec3', 'sec4', 'sec5', 'sec6', 'sec_security'] },
+  { label: 'ui.groupParticipate', items: ['sec7', 'sec8'] },
+  { label: 'ui.groupResources',   items: ['sec9', 'sec_team', 'sec10', 'sec_faq'] },
+];
+const ICONS = { home:'', sec1:'01', sec2:'02', sec3:'03', sec4:'04', sec5:'05', sec6:'06', sec_security:'07', sec7:'08', sec8:'09', sec9:'10', sec_team:'11', sec10:'12', sec_faq:'13' };
+const ORDER = ['home','sec1','sec2','sec3','sec4','sec5','sec6','sec_security','sec7','sec8','sec9','sec_team','sec10','sec_faq'];
+
+/* ============================================================
+   TRANSLATIONS  (en = source of truth; others fall back to en)
+   ============================================================ */
+const I18N = {};
+
+I18N.en = {
+  ui: {
+    docs: 'Docs',
+    searchPlaceholder: 'Search…',
+    searchNoResults: 'No results found',
+    onThisPage: 'On this page',
+    previous: 'Previous',
+    next: 'Next',
+    groupIntro: 'Introduction',
+    groupEcosystem: 'The Ecosystem',
+    groupParticipate: 'Participate',
+    groupResources: 'Resources',
+    helpfulQuestion: 'Was this helpful?',
+    helpfulYes: 'Yes',
+    helpfulNo: 'No',
+    helpfulThanks: 'Thanks for your feedback!',
+    lastModified: 'Last modified just now',
+    copy: 'Copy',
+    copied: 'Copied!',
+  },
+  nav: {
+    home: 'Overview',
+    sec1: 'Introduction',
+    sec2: 'The K-Culture Opportunity',
+    sec3: 'The KLOVER Ecosystem',
+    sec4: '$KLOVER',
+    sec5: 'Culture Tokens',
+    sec6: 'The KLOVER Platform',
+    sec7: 'Ecosystem Governance',
+    sec8: 'Launching a Culture Token',
+    sec9: 'Roadmap',
+    sec10: 'Legal & Compliance',
+    sec_security: 'Security & Audits',
+    sec_team: 'Team',
+    sec_faq: 'FAQ',
+  },
+  home: {
+    eyebrow: 'K-Culture Web3 Ecosystem',
+    title1: 'Tokenize',
+    title2: 'Culture',
+    lead: 'KLOVER is the K-Culture Web3 ecosystem that lets fans around the world own, influence, and engage with the culture they love. Welcome to the official documentation.',
+    cta1: 'Get Started',
+    cta2: 'Explore Culture Tokens',
+    byline: 'An ecosystem founded by Life4Cut.',
+    cards: [
+      { t: '$KLOVER', d: 'The native token that powers the entire ecosystem.' },
+      { t: 'Culture Tokens', d: 'Fan ownership and real utilities, issued by K-Culture organizations.' },
+      { t: 'The KLOVER Platform', d: 'Web3 made simple, built for fans rather than crypto experts.' },
+      { t: 'Built on BASE', d: 'Fast, affordable, and secure infrastructure.' },
+    ],
+  },
+  pages: {
+    sec1: `<p class="kl-lead">Welcome to the official documentation for KLOVER, the K-Culture Web3 ecosystem that lets fans around the world own, influence, and engage with the culture they love. This documentation explains what KLOVER is, how its ecosystem works, and how fans, partners, and supporters can take part.</p>
+<h2 id="what">What is KLOVER?</h2>
+<p>KLOVER is a Web3 ecosystem built to <strong>tokenize culture</strong>, beginning with Korean culture (K-POP, creators, and esports) and expanding worldwide. It connects K-Culture organizations with their global fanbases through <strong>Culture Tokens</strong>, digital assets that transform passive fandom into active participation and ownership. The entire ecosystem is built on the <strong>BASE</strong> blockchain.</p>
+<h2 id="audience">Who This Documentation Is For</h2>
+<p>This documentation serves three audiences:</p>
+<ul>
+<li><strong>Fans</strong> who want to own Culture Tokens, take part in decisions, and reach exclusive experiences.</li>
+<li><strong>K-Culture organizations</strong> exploring how to bring their communities on-chain and launch a Culture Token.</li>
+<li><strong>Partners and supporters</strong> who want to understand the ecosystem, the $KLOVER token, and the vision behind it.</li>
+</ul>
+<p>You can read it from start to finish, or jump to the section most relevant to you.</p>
+<h2 id="mission">Mission: Tokenize Culture</h2>
+<p>Our mission is simple: <strong>Tokenize Culture.</strong> We believe fans are not merely spectators. They are co-creators of culture's value, and KLOVER gives that contribution a tangible form.</p>
+<p>We start with Korean culture, and our vision is to expand to global culture, making KLOVER the home where any culture and its community can grow together.</p>
+<h2 id="brand">The KLOVER Brand</h2>
+<p>The KLOVER name unites two ideas. The <strong>clover</strong> is a universal symbol of luck, growth, and good fortune. <strong>"K-Lover"</strong> is the global community that loves K-Culture. Together they capture what KLOVER stands for: a flourishing home for the people who love culture and help it grow.</p>
+<h2 id="life4cut">Life4Cut: The Organization Behind KLOVER</h2>
+<p>KLOVER is founded and operated by <strong>Life4Cut</strong>, Korea's leading photobooth brand and a globally recognized name in K-Culture experiences. Life4Cut gives KLOVER deep cultural roots, brand trust, and direct connections across the K-Culture industry, a foundation few can match.</p>
+<h2 id="terminology">Key Terminology</h2>
+<p>A quick reference for the core terms used throughout this documentation:</p>
+<div class="kl-dl">
+<div class="row"><dt>KLOVER</dt><dd>The overall K-Culture Web3 ecosystem and its consumer platform.</dd></div>
+<div class="row"><dt>$KLOVER</dt><dd>The native token that powers the ecosystem and is used to acquire Culture Tokens.</dd></div>
+<div class="row"><dt>Culture Token</dt><dd>A token issued by a K-Culture organization that unlocks utilities for its holders.</dd></div>
+<div class="row"><dt>Culture Token Publisher</dt><dd>The organization (a label, MCN, or esports team) that issues a Culture Token.</dd></div>
+<div class="row"><dt>Utility</dt><dd>A benefit unlocked by a Culture Token, such as voting or exclusive experiences.</dd></div>
+<div class="row"><dt>BASE</dt><dd>The blockchain on which the KLOVER ecosystem is built.</dd></div>
+<div class="row"><dt>Presale</dt><dd>The initial sale of a new Culture Token on the KLOVER Platform, before secondary trading begins.</dd></div>
+<div class="row"><dt>Utility Hub</dt><dd>The area of the platform where holders use their Culture Tokens to vote and enter experiences.</dd></div>
+<div class="row"><dt>Web3</dt><dd>The category of internet services built on public blockchains, where people can truly own digital assets.</dd></div>
+</div>`,
+    sec2: `<p class="kl-lead">K-Culture has become a global force, yet the relationship between fans and the culture they fuel still runs in only one direction. KLOVER exists to close that gap.</p>
+<h2 id="phenomenon">K-Culture as a Global Phenomenon</h2>
+<p>From music to film to gaming, Korean culture commands a massive and passionate global audience. K-Culture fandoms are among the most engaged, creative, and loyal communities in the world, driving trends and shaping markets far beyond Korea's borders.</p>
+<h2 id="gap">The Fan Engagement Gap</h2>
+<p>Today, fans express their devotion through streaming, merchandise, and attendance. Yet they have <strong>no real say</strong> in the culture they support, and <strong>no stake</strong> in the value they help create. Their passion is immense, but their participation is limited to consumption.</p>
+<h2 id="economic-layer">The Missing Economic Layer</h2>
+<p>Value flows <em>around</em> fans, not <em>through</em> them. The economic upside of fandom largely accrues to platforms and intermediaries, while the fans who generate that value are left on the outside. There is a missing economic layer connecting fans to the culture they power.</p>
+<h2 id="why-kculture">Why Start with K-Culture</h2>
+<p>K-Culture is the natural place to begin, for several reasons:</p>
+<ul>
+<li>Its fandoms are global, deeply engaged, and already active online.</li>
+<li>Its organizations, such as labels and MCNs, last far longer than any single artist and serve many fans at once.</li>
+<li>Its audiences adopt new platforms and formats quickly.</li>
+<li>As the company behind KLOVER, Life4Cut holds direct relationships across the K-Culture industry.</li>
+</ul>
+<h2 id="who-benefits">Who Benefits</h2>
+<ul>
+<li><strong>Fans</strong> gain ownership, a voice in decisions, and access to experiences they could not reach before.</li>
+<li><strong>Organizations</strong> gain a new way to engage their communities and a new source of revenue.</li>
+<li><strong>The ecosystem</strong> grows stronger as every new community adds activity and demand.</li>
+</ul>
+<h2 id="why-web3">Why Web3, Why Now</h2>
+<p>For the first time, blockchain makes it possible to give fans <strong>verifiable ownership</strong>, <strong>direct influence</strong>, and <strong>shared upside</strong>. KLOVER uses this technology not for speculation, but to turn fandom into genuine participation. The timing is right: K-Culture is global, and the infrastructure is finally ready.</p>`,
+    sec3: `<p class="kl-lead">The KLOVER ecosystem is built on four connected pillars that work together to tokenize culture.</p>
+<h2 id="architecture">Architecture Overview</h2>
+<p>KLOVER links four elements into one seamless loop: the <strong>$KLOVER token</strong> (the ecosystem's currency), <strong>Culture Tokens</strong> (the assets fans hold), the <strong>KLOVER Platform</strong> (where everything happens), and the <strong>fans</strong> who bring it all to life. Each reinforces the others.</p>
+<h2 id="pillars">The Four Pillars</h2>
+<div class="kl-cards">
+<div class="kl-card"><div class="ic">01</div><div class="ct">$KLOVER</div><div class="cd">The native token that powers the ecosystem and is required to acquire Culture Tokens.</div></div>
+<div class="kl-card"><div class="ic">02</div><div class="ct">Culture Tokens</div><div class="cd">Tokens issued by K-Culture organizations that unlock real utilities for fans.</div></div>
+<div class="kl-card"><div class="ic">03</div><div class="ct">The KLOVER Platform</div><div class="cd">The welcoming home for buying, trading, and using Culture Tokens.</div></div>
+<div class="kl-card"><div class="ic">04</div><div class="ct">Fans</div><div class="cd">The global community whose ownership, participation, and energy give the ecosystem its value.</div></div>
+</div>
+<h2 id="how-it-works">How It Works, End to End</h2>
+<p>A typical journey through the ecosystem looks like this:</p>
+<ol>
+<li>A fan acquires <strong>$KLOVER</strong>, or deposits $KLOVER or USDT into the platform.</li>
+<li>They choose a <strong>Culture Token</strong> from an organization they support.</li>
+<li>They join the token's <strong>presale</strong>, or buy it on the secondary market.</li>
+<li>They use the token in the <strong>Utility Hub</strong> to vote and enter experiences.</li>
+<li>They hold <strong>$KLOVER</strong> to take part in ecosystem governance.</li>
+</ol>
+<h2 id="flywheel">The Economic Flywheel</h2>
+<p>The ecosystem is designed as a self-reinforcing loop:</p>
+<ul>
+<li>Demand for Culture Tokens drives demand for <strong>$KLOVER</strong>.</li>
+<li>A thriving platform attracts more <strong>Culture Token Publishers</strong>.</li>
+<li>More publishers attract more <strong>fans</strong>.</li>
+<li>More fans deepen demand across the entire ecosystem.</li>
+</ul>
+<h2 id="base">Built on BASE</h2>
+<p>KLOVER is built on <strong>BASE</strong>, a secure and dependable blockchain with the strength of Ethereum. We chose BASE for four reasons:</p>
+<ul>
+<li><strong>Low fees</strong> keep everyday actions affordable for fans.</li>
+<li><strong>Fast transactions</strong> make the experience feel immediate.</li>
+<li><strong>Strong security</strong> inherited from the Ethereum ecosystem.</li>
+<li><strong>Wide compatibility</strong> with standard Web3 wallets and tools.</li>
+</ul>
+<p>The result is infrastructure smooth enough for fans who have never used crypto before.</p>`,
+    sec4: `<p class="kl-lead">$KLOVER is the native token at the heart of the ecosystem, the currency through which all value flows.</p>
+<h2 id="role">The Role of $KLOVER</h2>
+<p>$KLOVER is the medium of exchange across the entire ecosystem. It is required to purchase Culture Tokens, used within platform transactions, and grants holders a voice in ecosystem governance. Wherever value moves in KLOVER, $KLOVER is involved.</p>
+<h2 id="utility">Token Utility</h2>
+<ul>
+<li><strong>Purchasing Culture Tokens:</strong> Culture Tokens can only be acquired using $KLOVER, creating continuous, structural demand.</li>
+<li><strong>Governance:</strong> $KLOVER holders vote on proposals raised by the KLOVER team.</li>
+<li><strong>Platform Medium:</strong> $KLOVER facilitates transactions and activity across the platform.</li>
+</ul>
+<h2 id="demand">Sources of Demand</h2>
+<p>Demand for $KLOVER comes from real use across the ecosystem, not from speculation alone:</p>
+<ul>
+<li><strong>Culture Token purchases</strong>, since every Culture Token is bought with $KLOVER.</li>
+<li><strong>Platform activity</strong>, since transactions settle in the ecosystem's own token.</li>
+<li><strong>Governance</strong>, since holding $KLOVER grants a voice in decisions.</li>
+</ul>
+<h2 id="standard">Token Standard</h2>
+<p>$KLOVER is an ERC-20 token deployed on the BASE blockchain, so it works with standard Web3 wallets and tools. The official contract address is <span class="kl-tbd">Needs to be decided</span> and will be published here before launch.</p>
+<h2 id="tokenomics">Tokenomics</h2>
+<p>Detailed tokenomics (total supply, allocation, vesting schedules, and emission and burn mechanics) are being finalized.</p>
+<div class="kl-soon"><span class="kl-soon-badge">Coming Soon</span><span class="kl-soon-sub">Full tokenomics will be published here.</span></div>
+<h2 id="acquire">How to Acquire $KLOVER</h2>
+<p>Fans will be able to obtain $KLOVER directly through the KLOVER Platform, with a simple onboarding experience designed for newcomers. The full list of supported acquisition methods and availability is <span class="kl-tbd">Needs to be decided</span>.</p>`,
+    sec5: `<p class="kl-lead">Culture Tokens are the assets that bring fans and K-Culture organizations together. Each one is issued by a cultural organization and unlocks real utilities for its holders.</p>
+<h2 id="what-ct">What is a Culture Token?</h2>
+<p>A <strong>Culture Token</strong> is a digital token issued by a K-Culture organization (a music label, an MCN, or an esports team) that represents membership in its community and unlocks exclusive utilities. Holding one is a direct connection to the culture you love.</p>
+<h2 id="who">Who Can Issue a Culture Token</h2>
+<p>Culture Tokens are issued by <strong>established cultural organizations</strong> rather than individuals. This ensures longevity and a broad utility surface: organizations outlast any single artist or season and can serve many fans across many projects. <em>(See <a data-nav="sec8" href="#sec8">Launching a Culture Token</a>.)</em></p>
+<h2 id="utilities">Culture Token Utilities</h2>
+<p>Culture Tokens unlock a growing range of utilities. Examples include:</p>
+<ul>
+<li><strong>Voting:</strong> Publishers invite fans to decide between options approved in advance, such as a single's cover art, a concert outfit, or the next profile picture. Fans shape real outcomes, within boundaries the publisher sets.</li>
+<li><strong>Experiences:</strong> Raffles for dinners with artists, early access to concert tickets, priority for fan meetings, and more.</li>
+<li><strong>Expanding Utilities:</strong> Utilities grow over time as publishers design new ways to reward their communities.</li>
+</ul>
+<div class="kl-hint info"><div class="h-ic"></div><div class="h-body">Voting is always curated by the publisher: fans choose among options the publisher has already approved.</div></div>
+<h2 id="how-voting">How Voting Works</h2>
+<p>Voting gives fans a real voice within clear boundaries:</p>
+<ol>
+<li>The publisher prepares a decision and a set of approved options.</li>
+<li>Holders of the Culture Token cast their votes during a set window.</li>
+<li>The result guides the publisher's final choice.</li>
+</ol>
+<p>Because the options are set in advance, voting stays meaningful and on brand.</p>
+<h2 id="lifecycle">The Culture Token Lifecycle</h2>
+<ul>
+<li><strong>Presale:</strong> Initial distribution on the KLOVER Platform.</li>
+<li><strong>Secondary Trading:</strong> Fans trade tokens within the platform's integrated marketplace.</li>
+<li><strong>Ongoing Utility:</strong> Holders access voting, experiences, and other utilities continuously.</li>
+</ul>
+<h2 id="ct-klover">Culture Tokens and $KLOVER</h2>
+<p>Culture Tokens and $KLOVER work together. $KLOVER is the currency of the ecosystem, and every Culture Token is acquired with $KLOVER. A Culture Token then carries the utilities of a single publisher, while $KLOVER carries value and governance across the whole ecosystem.</p>
+<h2 id="value">The Value of Holding</h2>
+<p>Holding a Culture Token means <strong>belonging</strong>. It is a direct line to influence, exclusive access, and a shared stake in a publisher's cultural journey, turning everyday fandom into membership.</p>`,
+    sec6: `<p class="kl-lead">The KLOVER Platform is the home of the ecosystem, designed so that anyone, not just crypto experts, can take part.</p>
+<h2 id="philosophy">Platform Philosophy: Web3 Without Barriers</h2>
+<p>KLOVER is built for <strong>fans first</strong>. The platform hides blockchain complexity behind a familiar, intuitive experience. If you can deposit $KLOVER or USDT, you can fully participate. <strong>No prior DeFi experience required.</strong></p>
+<h2 id="newcomers">Built for Newcomers</h2>
+<p>Most fans are not crypto experts, and they should not have to be. The platform removes the usual hurdles:</p>
+<ul>
+<li>No need to understand wallets, gas, or private keys to begin.</li>
+<li>A familiar interface, closer to a consumer app than a trading terminal.</li>
+<li>Clear steps for buying, holding, and using Culture Tokens.</li>
+</ul>
+<h2 id="getting-started">Getting Started</h2>
+<p>Getting started takes just a few steps:</p>
+<ol><li>Create your KLOVER account.</li><li>Deposit <strong>$KLOVER</strong> or <strong>USDT</strong>.</li><li>Join Culture Token presales, trade, and use utilities.</li></ol>
+<h2 id="deposits">Deposits and Withdrawals</h2>
+<p>You can fund your account with <strong>$KLOVER</strong> or <strong>USDT</strong>. Once funded, you can join presales, trade Culture Tokens, and use utilities. The full list of supported networks and deposit options is <span class="kl-tbd">Needs to be decided</span>.</p>
+<h2 id="features">Platform Features</h2>
+<ul>
+<li><strong>Culture Token Presales:</strong> Be among the first to acquire a newly launched Culture Token.</li>
+<li><strong>Trading:</strong> Buy and sell Culture Tokens in an integrated marketplace.</li>
+<li><strong>Utility Hub:</strong> Cast votes and enter raffles and experiences, all in one place.</li>
+</ul>
+<h2 id="fees">Fee Structure</h2>
+<p>KLOVER sustains the ecosystem through transparent transaction fees on platform activity, such as trading. The exact fee rates are <span class="kl-tbd">Needs to be decided</span>, and the full schedule will be published before launch.</p>
+<h2 id="security">Infrastructure &amp; Security</h2>
+<p>Built on <strong>BASE</strong>, the platform combines blockchain security with a custody and onboarding experience designed for mainstream users. Fans get the safety of decentralized infrastructure with the ease of a consumer app.</p>`,
+    sec7: `<p class="kl-lead">KLOVER gives its community a voice. Through ecosystem governance, $KLOVER holders help steer the direction of the ecosystem.</p>
+<h2 id="gov-philosophy">Governance Philosophy</h2>
+<p>Governance at KLOVER is <strong>curated by the team and decided by the community</strong>. The KLOVER team raises matters for a vote, and $KLOVER holders decide the outcome. This keeps proposals relevant and actionable while putting real decisions in the community's hands.</p>
+<h2 id="how">How Ecosystem Governance Works</h2>
+<ol>
+<li>The <strong>KLOVER team</strong> submits a proposal.</li>
+<li><strong>$KLOVER holders</strong> vote, with voting weight based on their holdings.</li>
+<li>The outcome is <strong>implemented</strong> by the team.</li>
+</ol>
+<h2 id="voting-power">How Voting Power Works</h2>
+<p>Voting weight is based on the amount of $KLOVER a holder commits to a vote. The more $KLOVER you hold, the more weight your vote carries. The exact method, including any limits or lockups, is <span class="kl-tbd">Needs to be decided</span>.</p>
+<h2 id="examples">Examples of Governance Decisions</h2>
+<p>Governance focuses on matters that affect the wider ecosystem. Examples may include:</p>
+<ul>
+<li>Priorities for new features and utilities.</li>
+<li>Direction for ecosystem programs and initiatives.</li>
+<li>Selected parameters that shape how the ecosystem runs.</li>
+</ul>
+<h2 id="scope">Scope of Ecosystem Governance</h2>
+<p>Ecosystem governance covers matters at the ecosystem level that the team raises, including direction, priorities, and initiatives that affect the broader KLOVER community. The precise scope of governable decisions is <span class="kl-tbd">Needs to be decided</span>.</p>
+<h2 id="vs">Ecosystem Governance vs. Culture Token Voting</h2>
+<div class="kl-hint accent"><div class="h-ic"></div><div class="h-body">KLOVER has <strong>two distinct voting systems</strong>. Do not confuse them.</div></div>
+<div class="kl-dl">
+<div class="row"><dt>Ecosystem Governance</dt><dd>Uses <strong>$KLOVER</strong>. Decides matters at the ecosystem level across all of KLOVER.</dd></div>
+<div class="row"><dt>Culture Token Voting</dt><dd>Uses a specific <strong>Culture Token</strong>. Decides matters within a single publisher's community (e.g. an album cover).</dd></div>
+</div>`,
+    sec8: `<p class="kl-lead">KLOVER partners with established K-Culture organizations to bring their communities on-chain. This is a broad overview for prospective partners.</p>
+<h2 id="who-partner">Who Should Partner with KLOVER?</h2>
+<p>KLOVER is designed for organizations with a <strong>passionate global fanbase</strong> and a <strong>lasting presence</strong> in K-Culture. Because Culture Tokens are issued by organizations rather than individuals, partners can offer enduring value across many artists, creators, and projects.</p>
+<h2 id="categories">Eligible Partner Categories</h2>
+<ul>
+<li><strong>K-POP Entertainment Companies</strong></li>
+<li><strong>Korean YouTube MCN Companies</strong></li>
+<li><strong>Korean Esports Organizations</strong></li>
+</ul>
+<p>…and other established K-Culture organizations with a global following.</p>
+<h2 id="eligibility">Eligibility</h2>
+<p>KLOVER looks for partners that can offer lasting value to a community. Typical signals include a global following, an active fanbase, and a track record in K-Culture. Full eligibility criteria are <span class="kl-tbd">Needs to be decided</span> and are confirmed during review.</p>
+<h2 id="receive">What Partners Receive</h2>
+<ul>
+<li>A complete platform and infrastructure, so there is no need to build Web3 internally.</li>
+<li>Access to a global community of culture fans.</li>
+<li>Tools for utilities (voting, experiences) and governance.</li>
+<li>A new channel for fan engagement and revenue.</li>
+</ul>
+<h2 id="process">The Launch Process</h2>
+<p>At a high level, launching a Culture Token follows these stages:</p>
+<ol>
+<li><strong>Inquiry.</strong> The organization reaches out to the KLOVER team.</li>
+<li><strong>Review.</strong> Both sides confirm fit, goals, and eligibility.</li>
+<li><strong>Design.</strong> The token, its utilities, and its launch plan are shaped together.</li>
+<li><strong>Presale.</strong> The Culture Token is offered to fans on the platform.</li>
+<li><strong>Launch.</strong> Trading and utilities go live, and the community grows from there.</li>
+</ol>
+<h2 id="revenue">Revenue Model for Partners</h2>
+<p>Partners can generate revenue from their Culture Token's presale and from ongoing platform activity. Specific terms and revenue share structures are <span class="kl-tbd">Needs to be decided</span> and are tailored to each partner during onboarding.</p>
+<h2 id="inquiry">Partner Inquiry &amp; Next Steps</h2>
+<p>Organizations interested in launching a Culture Token are invited to reach out to the KLOVER team. Official partnership contact details are:</p>
+<div class="kl-soon"><span class="kl-soon-badge">Coming Soon</span><span class="kl-soon-sub">Partnership contact information will be published here.</span></div>`,
+    sec9: `<p class="kl-lead">Our roadmap charts KLOVER's journey from foundation to a global ecosystem for tokenizing culture. Target timelines are <span class="kl-tbd">Needs to be decided</span> and will be refined as development progresses.</p>
+<div class="kl-timeline">
+<div class="kl-tl-item"><div class="kl-tl-dot"></div><div class="kl-tl-phase">Phase 1</div><h2 id="phase-1" class="kl-tl-title">Foundation</h2><div class="kl-tl-body">Build the core infrastructure, deploy on the BASE blockchain, and develop the KLOVER Platform, laying the technical and brand foundation for everything that follows.</div></div>
+<div class="kl-tl-item"><div class="kl-tl-dot"></div><div class="kl-tl-phase">Phase 2</div><h2 id="phase-2" class="kl-tl-title">Platform Launch</h2><div class="kl-tl-body">Launch the KLOVER Platform and the $KLOVER token, opening the front door of the ecosystem to fans worldwide.</div></div>
+<div class="kl-tl-item future"><div class="kl-tl-dot"></div><div class="kl-tl-phase">Phase 3</div><h2 id="phase-3" class="kl-tl-title">First Culture Tokens</h2><div class="kl-tl-body">Onboard the inaugural K-Culture publishers and launch their Culture Tokens, bringing the first communities fully on-chain.</div></div>
+<div class="kl-tl-item future"><div class="kl-tl-dot"></div><div class="kl-tl-phase">Phase 4</div><h2 id="phase-4" class="kl-tl-title">Ecosystem Expansion</h2><div class="kl-tl-body">Add more publishers, expand the range of utilities, and grow the global community, deepening the ecosystem's network effects.</div></div>
+<div class="kl-tl-item future"><div class="kl-tl-dot"></div><div class="kl-tl-phase">Vision</div><h2 id="vision" class="kl-tl-title">Beyond K-Culture</h2><div class="kl-tl-body">Extend KLOVER's model beyond K-Culture to tokenize cultures worldwide, realizing the full vision of <strong>Tokenize Culture</strong>.</div></div>
+</div>`,
+    sec10: `<p class="kl-lead">KLOVER operates with compliance at its core. Please review the following information carefully.</p>
+<h2 id="geography">Geographic Availability</h2>
+<p>The KLOVER ecosystem is available in <strong>international markets only</strong> and is <strong>not offered in the Republic of Korea</strong>, in line with applicable regulations. Availability may vary by jurisdiction.</p>
+<h2 id="eligibility-legal">User Eligibility</h2>
+<p>Access to the KLOVER ecosystem may depend on where you live and who you are. Users must meet the minimum age and any requirements that apply in their market, and must not be located in a restricted jurisdiction. Full eligibility terms are <span class="kl-tbd">Needs to be decided</span>.</p>
+<h2 id="regulatory">Regulatory Stance</h2>
+<p>KLOVER is committed to operating responsibly and adapting to the regulatory frameworks of the markets it serves. Our approach prioritizes long term sustainability and user protection over short term expansion.</p>
+<h2 id="privacy">Privacy</h2>
+<p>KLOVER is committed to handling personal data responsibly and in line with the rules of the markets it serves. A full privacy policy will be published before launch.</p>
+<h2 id="disclaimer">General Risk Disclaimer</h2>
+<div class="kl-hint warning"><div class="h-ic"></div><div class="h-body">Digital tokens involve risk, including the potential loss of value. This documentation is for <strong>informational purposes only</strong> and does not constitute financial, investment, or legal advice. Nothing herein is an offer or solicitation to buy or sell any asset. Please do your own research.</div></div>`,
+    sec_security: `<div class="kl-soon"><span class="kl-soon-badge">Coming Soon</span><span class="kl-soon-sub">Security practices and independent audit reports will be published here.</span></div>`,
+    sec_team: `<div class="kl-soon"><span class="kl-soon-badge">Coming Soon</span><span class="kl-soon-sub">The team behind KLOVER will be introduced here.</span></div>`,
+    sec_faq: `<div class="kl-soon"><span class="kl-soon-badge">Coming Soon</span><span class="kl-soon-sub">Answers to common questions will be published here.</span></div>`,
+  },
+};
+
+/* === Additional language packs are injected below (zh, ko, ja, fr, es). === */
+/* __TRANSLATIONS_INJECT__ */
+
+/* ============================================================
+   APPLICATION ENGINE
+   ============================================================ */
+(function () {
+  'use strict';
+  const LS_LANG = 'klover-lang', LS_THEME = 'klover-theme';
+  function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function lsSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+  let lang = lsGet(LS_LANG) || 'en';
+  if (!LANGS.some(l => l.code === lang)) lang = 'en';
+
+  function pack() { return I18N[lang] || I18N.en; }
+  function deepGet(obj, path) { return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj); }
+  function t(path) { const v = deepGet(pack(), path); return (v !== undefined && v !== null) ? v : deepGet(I18N.en, path); }
+  function navLabel(id) { return (pack().nav && pack().nav[id]) || I18N.en.nav[id] || id; }
+  function pageHtml(id) { const p = pack().pages || {}; return (p[id] !== undefined) ? p[id] : (I18N.en.pages[id] || ''); }
+  function homeData() { const en = I18N.en.home, h = pack().home || {}; const m = Object.assign({}, en, h); if (!h.cards || !h.cards.length) m.cards = en.cards; return m; }
+
+  const el = {
+    nav: document.getElementById('nav'),
+    content: document.getElementById('content'),
+    breadcrumb: document.getElementById('breadcrumb'),
+    pageFooter: document.getElementById('pageFooter'),
+    pager: document.getElementById('pager'),
+    toc: document.getElementById('toc'),
+    langBtn: document.getElementById('langBtn'),
+    langMenu: document.getElementById('langMenu'),
+    langCurrent: document.getElementById('langCurrent'),
+    langDropdown: document.getElementById('langDropdown'),
+    search: document.getElementById('searchInput'),
+    searchResults: document.getElementById('searchResults'),
+    themeToggle: document.getElementById('themeToggle'),
+    iconSun: document.getElementById('iconSun'),
+    iconMoon: document.getElementById('iconMoon'),
+    menuToggle: document.getElementById('menuToggle'),
+    scrim: document.getElementById('scrim'),
+  };
+  let current = parseHash();
+
+  /* ---------- THEME ---------- */
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    el.iconSun.style.display = theme === 'dark' ? 'none' : 'block';
+    el.iconMoon.style.display = theme === 'dark' ? 'block' : 'none';
+    lsSet(LS_THEME, theme);
+  }
+  (function initTheme() {
+    let theme = lsGet(LS_THEME);
+    if (!theme) theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    applyTheme(theme);
+  })();
+  el.themeToggle.addEventListener('click', () => applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+
+  /* ---------- LANGUAGE ---------- */
+  function buildLangMenu() {
+    el.langMenu.innerHTML = '';
+    LANGS.forEach(l => {
+      const opt = document.createElement('div');
+      opt.className = 'kl-lang-opt' + (l.code === lang ? ' active' : '');
+      opt.setAttribute('role', 'menuitem');
+      opt.innerHTML = '<span class="native">' + l.native + '</span><span class="en-name">' + l.en + '</span>' +
+        '<span class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>';
+      opt.tabIndex = 0;
+      const choose = () => {
+        closeLangMenu();
+        if (SUPPORTED_LANGS.indexOf(l.code) !== -1) { setLang(l.code); el.langBtn.focus(); }
+        else { showComingSoon(l.code); }
+      };
+      opt.addEventListener('click', choose);
+      opt.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(); } });
+      el.langMenu.appendChild(opt);
+    });
+  }
+  function setLang(code) {
+    lang = code;
+    lsSet(LS_LANG, code);
+    document.documentElement.setAttribute('lang', code);
+    const meta = LANGS.find(l => l.code === code);
+    el.langCurrent.textContent = meta ? meta.native : 'English';
+    applyStaticI18n(); buildLangMenu(); renderNav(); renderPage(current, false);
+  }
+  function openLangMenu() { el.langDropdown.classList.add('open'); el.langBtn.setAttribute('aria-expanded', 'true'); const f = el.langMenu.querySelector('.kl-lang-opt'); if (f) f.focus(); }
+  function closeLangMenu() { el.langDropdown.classList.remove('open'); el.langBtn.setAttribute('aria-expanded', 'false'); }
+  el.langBtn.addEventListener('click', (e) => { e.stopPropagation(); el.langDropdown.classList.contains('open') ? closeLangMenu() : openLangMenu(); });
+  document.addEventListener('click', (e) => { if (!el.langDropdown.contains(e.target)) closeLangMenu(); });
+  function applyStaticI18n() {
+    document.querySelectorAll('[data-i18n]').forEach(node => { node.textContent = t(node.getAttribute('data-i18n')); });
+    el.search.setAttribute('placeholder', t('ui.searchPlaceholder'));
+    el.search.setAttribute('aria-label', t('ui.searchPlaceholder'));
+  }
+
+  /* ---------- COMING SOON MODAL ---------- */
+  let modalEl = null;
+  function buildModal() {
+    modalEl = document.createElement('div');
+    modalEl.className = 'kl-modal';
+    modalEl.innerHTML = '<div class="kl-modal-scrim"></div><div class="kl-modal-card" role="dialog" aria-modal="true"><div class="kl-modal-lang"></div><div class="kl-modal-title"></div><div class="kl-modal-sub"></div><button class="kl-modal-close" type="button"></button></div>';
+    document.body.appendChild(modalEl);
+    modalEl.querySelector('.kl-modal-scrim').addEventListener('click', closeModal);
+    modalEl.querySelector('.kl-modal-close').addEventListener('click', closeModal);
+  }
+  function showComingSoon(code) {
+    const c = COMING_SOON[code];
+    if (!c) return;
+    if (!modalEl) buildModal();
+    modalEl.querySelector('.kl-modal-lang').textContent = c.native;
+    modalEl.querySelector('.kl-modal-title').textContent = c.title;
+    modalEl.querySelector('.kl-modal-sub').textContent = c.sub;
+    const card = modalEl.querySelector('.kl-modal-card');
+    card.setAttribute('lang', code);
+    modalEl.querySelector('.kl-modal-close').textContent = c.close;
+    modalEl.classList.add('open');
+    modalEl.querySelector('.kl-modal-close').focus();
+  }
+  function closeModal() {
+    if (modalEl) modalEl.classList.remove('open');
+    if (el.langBtn) el.langBtn.focus();
+  }
+
+  /* ---------- NAV ---------- */
+  function renderNav() {
+    el.nav.innerHTML = '';
+    NAV_GROUPS.forEach(group => {
+      const g = document.createElement('div');
+      g.className = 'kl-nav-group';
+      if (group.label) {
+        const gl = document.createElement('div');
+        gl.className = 'kl-nav-group-label';
+        gl.textContent = t(group.label);
+        g.appendChild(gl);
+      }
+      group.items.forEach(id => {
+        const link = document.createElement('a');
+        link.className = 'kl-nav-link' + (id === current.section ? ' active' : '');
+        link.href = '#' + id;
+        link.setAttribute('data-nav', id);
+        link.innerHTML = '<span class="ico" aria-hidden="true">' + (ICONS[id] || '•') + '</span><span>' + navLabel(id) + '</span>';
+        g.appendChild(link);
+      });
+      el.nav.appendChild(g);
+    });
+  }
+
+  /* ---------- ROUTER ---------- */
+  function parseHash() {
+    let h = (location.hash || '').replace(/^#/, '').trim();
+    if (ORDER.includes(h)) return { section: h };
+    return { section: 'home' };
+  }
+  window.addEventListener('hashchange', () => { current = parseHash(); renderPage(current, true); renderNav(); });
+
+  /* ---------- RENDER ---------- */
+  function renderPage(route, doScroll) {
+    const id = route.section;
+    if (id === 'home') renderHome(); else renderSection(id);
+    renderBreadcrumb(id); renderFooter(id); renderPager(id); buildToc(id);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    closeMobileNav(); setActiveStates(route);
+  }
+  function renderHome() {
+    const h = homeData();
+    let cards = '';
+    (h.cards || []).forEach((c, i) => { cards += '<div class="kl-card"><div class="ic">' + String(i + 1).padStart(2, '0') + '</div><div class="ct">' + c.t + '</div><div class="cd">' + c.d + '</div></div>'; });
+    el.content.innerHTML =
+      '<div class="kl-hero">' +
+        '<span class="eyebrow">' + h.eyebrow + '</span>' +
+        '<h1>' + h.title1 + ' <span class="grad">' + h.title2 + '</span></h1>' +
+        '<p class="lead">' + h.lead + '</p>' +
+        '<div class="kl-hero-cta">' +
+          '<a class="kl-btn kl-btn-primary" data-nav="sec1" href="#sec1">' + h.cta1 + ' →</a>' +
+          '<a class="kl-btn kl-btn-ghost" data-nav="sec5" href="#sec5">' + h.cta2 + '</a>' +
+        '</div>' +
+        '<div class="kl-byline">' + h.byline + '</div>' +
+      '</div>' +
+      '<hr class="kl-home-divider" />' +
+      '<div class="kl-cards">' + cards + '</div>';
+  }
+  function renderSection(id) {
+    el.content.innerHTML = '<h1>' + navLabel(id) + '</h1>' + pageHtml(id);
+  }
+  function renderBreadcrumb(id) {
+    const root = 'KLOVER ' + t('ui.docs');
+    if (id === 'home') el.breadcrumb.innerHTML = '<span>' + root + '</span>';
+    else el.breadcrumb.innerHTML = '<a data-nav="home" href="#home">' + root + '</a><span class="sep">›</span><span>' + navLabel(id) + '</span>';
+  }
+  function renderFooter(id) {
+    if (id === 'home') { el.pageFooter.innerHTML = ''; return; }
+    el.pageFooter.innerHTML =
+      '<div class="kl-helpful" id="helpful">' +
+        '<span>' + t('ui.helpfulQuestion') + '</span>' +
+        '<button class="kl-helpful-btn" data-helpful>' + t('ui.helpfulYes') + '</button>' +
+        '<button class="kl-helpful-btn" data-helpful>' + t('ui.helpfulNo') + '</button>' +
+      '</div>' +
+      '<div class="kl-meta">' + t('ui.lastModified') + '</div>';
+  }
+  function renderPager(id) {
+    const idx = ORDER.indexOf(id);
+    const prev = idx > 0 ? ORDER[idx - 1] : null;
+    const next = idx < ORDER.length - 1 ? ORDER[idx + 1] : null;
+    let html = '';
+    html += prev
+      ? '<a class="kl-pager-btn prev" data-nav="' + prev + '" href="#' + prev + '"><span class="kl-pager-dir">← ' + t('ui.previous') + '</span><span class="kl-pager-title">' + navLabel(prev) + '</span></a>'
+      : '<span class="kl-pager-btn empty"></span>';
+    html += next
+      ? '<a class="kl-pager-btn next" data-nav="' + next + '" href="#' + next + '"><span class="kl-pager-dir">' + t('ui.next') + ' →</span><span class="kl-pager-title">' + navLabel(next) + '</span></a>'
+      : '<span class="kl-pager-btn empty"></span>';
+    el.pager.innerHTML = html;
+  }
+
+  /* ---------- TOC ---------- */
+  let tocObserver = null;
+  function buildToc(id) {
+    if (tocObserver) { tocObserver.disconnect(); tocObserver = null; }
+    el.toc.innerHTML = '';
+    const tocTitle = document.querySelector('.kl-toc-title');
+    const showTitle = (v) => { if (tocTitle) tocTitle.style.display = v ? '' : 'none'; };
+    if (id === 'home') { showTitle(false); return; }
+    const heads = Array.from(el.content.querySelectorAll('h2[id]'));
+    if (!heads.length) { showTitle(false); return; }
+    showTitle(true);
+    heads.forEach(h => {
+      const a = document.createElement('a');
+      a.className = 'kl-toc-link'; a.href = '#' + h.id; a.textContent = h.textContent; a.setAttribute('data-anchor', h.id);
+      a.addEventListener('click', (e) => { e.preventDefault(); h.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      el.toc.appendChild(a);
+    });
+    tocObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const hid = entry.target.id;
+          el.toc.querySelectorAll('.kl-toc-link').forEach(l => l.classList.toggle('active', l.getAttribute('data-anchor') === hid));
+        }
+      });
+    }, { rootMargin: '-80px 0px -70% 0px', threshold: 0 });
+    heads.forEach(h => tocObserver.observe(h));
+  }
+  function setActiveStates(route) {
+    document.querySelectorAll('.kl-nav-link').forEach(l => l.classList.toggle('active', l.getAttribute('data-nav') === route.section));
+  }
+
+  /* ---------- SEARCH ---------- */
+  function stripHtml(s) { const d = document.createElement('div'); d.innerHTML = s; return (d.textContent || '').replace(/\s+/g, ' ').trim(); }
+  function esc(s) { return s.replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c])); }
+  function buildIndex() {
+    const idx = [];
+    ORDER.forEach(id => {
+      if (id === 'home') return;
+      idx.push({ section: id, title: navLabel(id), crumb: t('ui.docs'), text: stripHtml(pageHtml(id)) });
+    });
+    return idx;
+  }
+  let searchIndex = [];
+  function runSearch(q) {
+    q = q.trim().toLowerCase();
+    if (!q) { el.searchResults.classList.remove('open'); el.searchResults.innerHTML = ''; return; }
+    const hits = [];
+    for (const item of searchIndex) {
+      const hay = (item.title + ' ' + item.text).toLowerCase();
+      const pos = hay.indexOf(q);
+      if (pos >= 0) hits.push({ item, score: (item.title.toLowerCase().includes(q) ? 0 : 100) + pos });
+    }
+    hits.sort((a, b) => a.score - b.score);
+    renderSearchResults(hits.slice(0, 10), q);
+  }
+  function highlight(text, q) {
+    const i = text.toLowerCase().indexOf(q);
+    if (i < 0) return esc(text.slice(0, 90));
+    const start = Math.max(0, i - 30);
+    const snippet = (start > 0 ? '…' : '') + text.slice(start, i + q.length + 50);
+    const j = snippet.toLowerCase().indexOf(q);
+    return esc(snippet.slice(0, j)) + '<mark>' + esc(snippet.slice(j, j + q.length)) + '</mark>' + esc(snippet.slice(j + q.length));
+  }
+  function renderSearchResults(hits, q) {
+    if (!hits.length) { el.searchResults.innerHTML = '<div class="kl-search-empty">' + t('ui.searchNoResults') + '</div>'; el.searchResults.classList.add('open'); return; }
+    el.searchResults.innerHTML = hits.map(h => '<a class="kl-result" href="#' + h.item.section + '" data-route="' + h.item.section + '"><div class="r-crumb">' + esc(h.item.crumb) + '</div><div class="r-title">' + esc(h.item.title) + '</div>' + (h.item.text ? '<div class="r-snippet">' + highlight(h.item.text, q) + '</div>' : '') + '</a>').join('');
+    el.searchResults.classList.add('open');
+    el.searchResults.querySelectorAll('.kl-result').forEach(r => r.addEventListener('click', (e) => { e.preventDefault(); location.hash = '#' + r.getAttribute('data-route'); el.searchResults.classList.remove('open'); el.search.value = ''; }));
+  }
+  el.search.addEventListener('input', () => { searchIndex = buildIndex(); runSearch(el.search.value); });
+  el.search.addEventListener('focus', () => { searchIndex = buildIndex(); if (el.search.value) runSearch(el.search.value); });
+  document.addEventListener('click', (e) => { if (!e.target.closest('.kl-search-wrap')) el.searchResults.classList.remove('open'); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== el.search) { e.preventDefault(); el.search.focus(); }
+    if (e.key === 'Escape') { el.searchResults.classList.remove('open'); el.search.blur(); closeLangMenu(); closeModal(); }
+  });
+
+  /* ---------- COMPONENT INTERACTIONS (delegated) ---------- */
+  document.addEventListener('click', (e) => {
+    const copyBtn = e.target.closest('[data-copy]');
+    if (copyBtn) {
+      const pre = copyBtn.closest('.kl-code').querySelector('code');
+      const text = pre ? pre.textContent : '';
+      navigator.clipboard && navigator.clipboard.writeText(text);
+      const orig = copyBtn.textContent; copyBtn.textContent = t('ui.copied');
+      setTimeout(() => { copyBtn.textContent = orig; }, 1400);
+    }
+    const tabHead = e.target.closest('.kl-tab-head');
+    if (tabHead) {
+      const tabs = tabHead.closest('[data-tabs]'); const i = +tabHead.getAttribute('data-tab');
+      tabs.querySelectorAll('.kl-tab-head').forEach((b, k) => b.classList.toggle('active', k === i));
+      tabs.querySelectorAll('.kl-tab-pane').forEach((p, k) => p.classList.toggle('active', k === i));
+    }
+    const accHead = e.target.closest('.kl-acc-head');
+    if (accHead) accHead.closest('.kl-accordion').classList.toggle('open');
+    const helpBtn = e.target.closest('[data-helpful]');
+    if (helpBtn) { const box = document.getElementById('helpful'); if (box) box.innerHTML = '<span class="thanks">' + t('ui.helpfulThanks') + '</span>'; }
+  });
+
+  /* ---------- MOBILE NAV ---------- */
+  function openMobileNav() { document.body.classList.add('nav-open'); }
+  function closeMobileNav() { document.body.classList.remove('nav-open'); }
+  function closeMobileNavMaybe() { if (window.innerWidth <= 860) closeMobileNav(); }
+  el.menuToggle.addEventListener('click', () => document.body.classList.contains('nav-open') ? closeMobileNav() : openMobileNav());
+  el.scrim.addEventListener('click', closeMobileNav);
+  document.addEventListener('click', (e) => { if (e.target.closest('[data-nav]')) closeMobileNavMaybe(); });
+
+  /* ---------- INIT ---------- */
+  function init() {
+    document.documentElement.setAttribute('lang', lang);
+    const meta = LANGS.find(l => l.code === lang);
+    el.langCurrent.textContent = meta ? meta.native : 'English';
+    applyStaticI18n(); buildLangMenu(); renderNav(); renderPage(current, false);
+  }
+  init();
+})();
+</script>
+</body>
+</html>
