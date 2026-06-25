@@ -620,7 +620,7 @@ const ORDER = ['home','sec1','sec2','sec3','sec4','sec5','sec6','sec_security','
 /* Auto-detect the GitHub Pages project base (repo name) so the same file
    works in any repo (klover-docs, klover-documentation, ...). Locally
    (preview server / file), the base is root. */
-const BASE = '/klover-docs';
+const BASE = location.hostname.endsWith('github.io') ? '/' + (location.pathname.split('/')[1] || '') : '';
 const PATH_MAP = {
   home: '/',
   sec1: '/introduction',
