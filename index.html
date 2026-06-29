@@ -1272,18 +1272,18 @@ I18N.ko = {
   /* ---------- $KLVR tokenomics: allocation table + release schedule chart ---------- */
   /* TGE = 2026 Q4 (Nov 2026) = month 0. Linear vesting begins after the cliff. */
   var KLVR_TK = [
-    { ko:'유동성 (CEX 및 DEX 상장)', en:'Liquidity (CEX & DEX)',          pct:10.0, tge:100, cliff:0,  vest:0,  color:'#2f7d54' },
-    { ko:'생태계 발전기금',           en:'Ecosystem Development Fund',     pct:50.0, tge:100, cliff:0,  vest:0,  color:'#1f5236' },
-    { ko:'에어드랍',                  en:'Airdrop',                        pct:2.5,  tge:100, cliff:0,  vest:0,  color:'#6aa67f' },
-    { ko:'마케팅',                    en:'Marketing',                      pct:0.5,  tge:0,   cliff:3,  vest:3,  color:'#aab36a' },
-    { ko:'재단',                      en:'Foundation',                     pct:10.0, tge:0,   cliff:24, vest:24, color:'#3d7c80' },
-    { ko:'투자자 (Private Round)',    en:'Investors (Private Round)',      pct:10.0, tge:0,   cliff:6,  vest:12, color:'#5878a0' },
-    { ko:'금고',                      en:'Treasury',                       pct:5.0,  tge:0,   cliff:12, vest:36, color:'#7e7194' },
-    { ko:'예비',                      en:'Reserve',                        pct:2.0,  tge:0,   cliff:6,  vest:24, color:'#97907f' },
-    { ko:'인생네컷',                  en:'Life4Cut',                       pct:3.0,  tge:0,   cliff:24, vest:24, color:'#c06b4a' },
-    { ko:'초기 파트너 (소속사 등)',   en:'Initial Partners (labels, etc.)',pct:7.0,  tge:0,   cliff:24, vest:24, color:'#b58a3c' }
+    { ko:'생태계 발전기금',              en:'Ecosystem Development',  pct:42.0, tge:100, cliff:0,  vest:0,  color:'#1f5236' },
+    { ko:'유동성 (CEX 및 DEX 상장)',     en:'Liquidity',              pct:7.0,  tge:100, cliff:0,  vest:0,  color:'#2f7d54' },
+    { ko:'퍼블릭 세일',                  en:'Public Sale',            pct:7.0,  tge:100, cliff:0,  vest:0,  color:'#5ab07a' },
+    { ko:'에어드랍',                     en:'Airdrop',                pct:2.5,  tge:0,   cliff:3,  vest:6,  color:'#6aa67f' },
+    { ko:'투자자 (Private Sale)',        en:'Private Sale',           pct:10.0, tge:0,   cliff:3,  vest:3,  color:'#5878a0' },
+    { ko:'마케팅',                       en:'Marketing',              pct:1.5,  tge:0,   cliff:6,  vest:12, color:'#aab36a' },
+    { ko:'금고',                         en:'Treasury',               pct:5.0,  tge:0,   cliff:12, vest:24, color:'#7e7194' },
+    { ko:'재단',                         en:'Team',                   pct:10.0, tge:0,   cliff:24, vest:24, color:'#3d7c80' },
+    { ko:'인생네컷 (LK Ventures)',       en:'LK Ventures',            pct:5.0,  tge:0,   cliff:24, vest:24, color:'#c06b4a' },
+    { ko:'초기 파트너 (소속사 등)',      en:'Early Partners',         pct:10.0, tge:0,   cliff:24, vest:24, color:'#b58a3c' }
   ];
-  var KLVR_STACK = [1,0,2,5,4,9,6,8,3,7]; /* bottom -> top: constant unlocks first, then vesting */
+  var KLVR_STACK = [0,1,2,3,4,5,6,7,8,9]; /* bottom -> top: constant unlocks first, then vesting */
   function klvrRelFrac(c, m){ var b=c.tge/100; if(b>=1) return 1; var r=1-b, vp; if(m<c.cliff) vp=0; else if(c.vest<=0||m>=c.cliff+c.vest) vp=1; else vp=(m-c.cliff)/c.vest; return b+r*vp; }
   function klvrQLabel(qi){ var q=4+qi, y=2026; y+=Math.floor((q-1)/4); q=((q-1)%4)+1; return y+' Q'+q; }
   function klvrDur(n, ko){ return n<=0 ? '–' : (n + (ko ? '개월' : ' mo')); }
